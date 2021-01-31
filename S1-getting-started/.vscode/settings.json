@@ -1,0 +1,30 @@
+(({
+	"liveServer.settings.port": 5501,
+	"html.format.wrapAttributes": "force-aligned",
+	"[vue]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "extends": ["plugin:prettier/recommended"],
+	"plugins": ["prettier"],
+
+	"rules": {
+		"prettier/prettier": "error"
+	}
+},
+{
+  "semi": false,
+	"singleQuote": true,
+	"useTabs": true,
+	"trailingComma": "none",
+    "printWidth": 80,
+}

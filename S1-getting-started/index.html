@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>A First App</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<div>
+				<label for="goal">Goal</label>
+				<input type="text" id="goal" v-model="enteredValue" @keyup.enter='addGoal' />
+				<button v-on:click='addGoal'>Add Goal</button>
+			</div>
+
+			<ul>
+				<li v-for="goal in goals">{{ goal }}</li>
+			</ul>
+
+			{{enteredValue}}
+
+		</div>
+
+		<!-- Vue 2 -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+
+		<!-- Vue 3 -->
+		<script src="https://unpkg.com/vue@next"></script>
+		<script src="app.js"></script>
+	</body>
+
+</html>

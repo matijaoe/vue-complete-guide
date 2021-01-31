@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue Basics</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://unpkg.com/vue@next" defer></script>
+		<script src="app.js" defer></script>
+	</head>
+
+	<body>
+		<header>
+			<h1>Vue Events</h1>
+		</header>
+
+		<section id="events">
+			<h2 v-bind:title="statusMsg">Events in Action</h2>
+
+			<button v-on:click="increment(1)">Add</button>
+			<button @click="increment(10)">Add 10</button>
+			<button
+				@click="decrement(1)"
+				@click.right="decrement(2)"
+				title="trying smthn out"
+			>
+				Subtract
+			</button>
+
+			<p v-once>Staring counter: {{ counter }}</p>
+			<p>Result: {{ counter }}</p>
+
+			<label for="">Your name: </label>
+			<input
+				type="text"
+				@input="setName($event, 'Osrečki')"
+				@keyup.enter="confirmInput"
+			/>
+			<p>Hi {{ confirmedName }}</p>
+
+			<form v-on:submit.prevent.="submitForm">
+				<input type="text" name="" id="" />
+				<button>Sign up</button>
+			</form>
+		</section>
+	</body>
+</html>
