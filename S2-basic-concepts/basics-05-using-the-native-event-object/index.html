@@ -18,6 +18,10 @@
 		</header>
 
 		<section id="events">
+			<!-- will be cached, and changed only if one of its dependencies changes -->
+			<h3>Time is {{ computedTime }}</h3>
+			<!-- will update every time anthing changes -->
+			<h3>Time is {{ calculateTime() }}</h3>
 			<h2>Events in Action</h2>
 
 			<button @click="add(10)">Add 10</button>
@@ -25,8 +29,21 @@
 
 			<p>Result: {{ counter }}</p>
 
-			<input type="text" @input="setName($event, 'Scott')" />
-			<p>Your Name: {{ name }}</p>
+			<!-- two way binding -->
+			<input type="text" v-model="name" @keyup.enter="confirmName" />
+			<button @click="resetInput">Reset input</button>
+			<!-- will be cached, and changed only if one of its dependencies (name) changes -->
+			<p v-if="fullName">Your Name: {{ fullName }}</p>
+			<p v-if="confirmedName">Your Confirmed Name: {{ confirmedName }}</p>
 		</section>
 	</body>
 </html>
+
+<!--  
+v-model="name" je shortcut za ovo dvoje
+:value="name"
+@input="setName($event, 'Scott')"
+-->
+<!-- 
+v-model je shortcut za v-bind:value i v-on:input
+ -->

@@ -7,7 +7,19 @@ html {
 }
 
 body {
-	margin: 0;
+	margin: 0 auto;
+	max-width: 800px;
+	background-image: radial-gradient(
+		50% 50% at 50% 50%,
+		rgba(38, 166, 151, 0.1) 0%,
+		rgba(33, 36, 41, 0) 100%
+	);
+	background: linear-gradient(
+		111.63deg,
+		rgb(57, 79, 80) 0%,
+		rgb(72, 78, 69) 49.48%,
+		rgb(57, 79, 80) 100%
+	);
 }
 
 header {
@@ -26,6 +38,7 @@ header {
 	border-radius: 10px;
 	padding: 1rem;
 	text-align: center;
+	background: white;
 }
 
 #assignment h2 {
