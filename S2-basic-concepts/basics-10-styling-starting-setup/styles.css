@@ -37,4 +37,10 @@ header {
 	max-height: 200px;
 	margin: 8px;
 	border: 2px dashed #ccc;
+	cursor: pointer;
+}
+
+.active {
+	border-color: red;
+	background: rgb(255, 233, 230);
 }

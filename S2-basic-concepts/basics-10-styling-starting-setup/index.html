@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue Basics</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://unpkg.com/vue@next" defer></script>
+		<script src="app.js" defer></script>
+	</head>
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Vue Basics</title>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="styles.css" />
-        <script src="https://unpkg.com/vue@next" defer></script>
-        <script src="app.js" defer></script>
-    </head>
+	<body>
+		<header>
+			<h1>Vue Dynamic Styling</h1>
+		</header>
+		<section id="styling">
+			<div
+				v-if="false"
+				class="demo"
+				:style="{borderColor: boxASelected ? 'red' : '#ccc'}"
+				@click="boxToggleSelected('A')"
+			></div>
 
-    <body>
-        <header>
-            <h1>Vue Dynamic Styling</h1>
-        </header>
-        <section id="styling">
-            <div class="demo"></div>
-            <div class="demo"></div>
-            <div class="demo"></div>
-        </section>
-    </body>
-
+			<div
+				class="demo"
+				:class="boxAClasses"
+				@click="boxToggleSelected('A')"
+			></div>
+			<div
+				:class="['demo', {active: boxBSelected}]"
+				@click="boxToggleSelected('B')"
+			></div>
+			<div
+				class="demo"
+				:class="{active: boxCSelected}"
+				@click="boxToggleSelected('C')"
+			></div>
+		</section>
+	</body>
 </html>
