@@ -1,0 +1,40 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: 'Jost', sans-serif;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 600px;
+}
+
+header {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+	margin: 3rem;
+	border-radius: 10px;
+	padding: 1rem;
+	background-color: #4fc08d;
+	color: white;
+	text-align: center;
+}
+
+#styling {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+	margin: 3rem;
+	border-radius: 10px;
+	padding: 1.6rem;
+	text-align: center;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.demo {
+	min-height: 100px;
+	max-height: 200px;
+	margin: 8px;
+	border: 2px dashed #ccc;
+}

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Vue Basics</title>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
-			rel="stylesheet"
-		/>
+		<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="styles.css" />
 		<script src="https://unpkg.com/vue@next" defer></script>
 		<script src="app.js" defer></script>
 	</head>
+
 	<body>
 		<header>
 			<h1>Vue Events</h1>
@@ -19,7 +18,7 @@
 
 		<section id="events">
 			<!-- will be cached, and changed only if one of its dependencies changes -->
-			<h3>Time is {{ computedTime }}</h3>
+			<h3>Computed time is {{ computedTime }}</h3>
 			<!-- will update every time anthing changes -->
 			<h3>Time is {{ calculateTime() }}</h3>
 			<h2>Events in Action</h2>
@@ -30,13 +29,15 @@
 			<p>Result: {{ counter }}</p>
 
 			<!-- two way binding -->
-			<input type="text" v-model="name" @keyup.enter="confirmName" />
-			<button @click="resetInput">Reset input</button>
+			<input type="text" v-model="name" @keyup.enter="confirmName" placeholder="Name" />
+			<input type="text" v-model="lastName" @keyup.enter="confirmName" placeholder="Last name" />
+			<button @click="resetInput">Reset inputs</button>
 			<!-- will be cached, and changed only if one of its dependencies (name) changes -->
-			<p v-if="fullName">Your Name: {{ fullName }}</p>
+			<p v-if="fullname">Your Name: {{ fullname }}</p>
 			<p v-if="confirmedName">Your Confirmed Name: {{ confirmedName }}</p>
 		</section>
 	</body>
+
 </html>
 
 <!--  
