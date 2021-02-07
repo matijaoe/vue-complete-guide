@@ -1,4 +1,4 @@
-// https://monster-slayer-delta.vercel.app
+// https://monster-slayer.mat2ja.vercel.app/
 
 function getRandomValue(min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
