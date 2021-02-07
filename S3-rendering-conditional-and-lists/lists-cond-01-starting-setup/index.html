@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue Basics</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://unpkg.com/vue@next" defer></script>
+		<script src="app.js" defer></script>
+	</head>
+	<body>
+		<header>
+			<h1>Vue Course Goals</h1>
+		</header>
+		<section id="user-goals">
+			<h2>My course goals</h2>
+			<input type="text" v-model="currentGoal" @keydown.enter="addGoal" />
+			<button @click="addGoal">Add Goal</button>
+			<p v-if="goals.length === 0">
+				No goals have been added yet - please start adding some!
+			</p>
+			<ul v-else>
+				<!-- add key whenever using v-for, bcs after deleting,
+                    on re-render vue only changes the placeholders, and not 
+                    the whole element - input bug! 
+                    it changes it by making it unique with unique key
+                    it helps Vue makes elements apart, it doesnt reuse it
+                -->
+				<li
+					v-for="(goal, index) in goals"
+					:key="goal"
+					@click="removeGoal(index)"
+				>
+					<p>{{ index+1 }} - {{ goal }}</p>
+					<!-- .stop stops propagation (bubbling), doesnt trigger outer events -->
+					<input type="text" @click.stop />
+				</li>
+			</ul>
+
+			<!-- <h2>Iterate over objects</h2>
+			<ul>
+				<li v-for="value, key, index in { name: 'Matija', age: 21 }">
+					{{ index }}. {{ key }}: {{ value }}
+				</li>
+			</ul> -->
+
+			<!-- <h2>Number ranges</h2>
+			<ul>
+				<li v-for="(num, i) in 10">
+					Number {{ num }} at index {{ i }}
+				</li>
+			</ul> -->
+		</section>
+	</body>
+</html>
