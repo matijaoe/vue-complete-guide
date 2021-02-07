@@ -1,7 +1,10 @@
 :root {
-	--accent-color: #c94258c9;
-	--green-color: #58d6b0;
+	--accent-color: #d16174;
 	--accent-color-2: #e23753;
+	--green-color: #58d6b0;
+	--green-color-2: #21af85;
+	--yellow-color: #e4af03;
+	--blue-color: #256fc4;
 }
 
 * {
@@ -14,6 +17,8 @@ html {
 
 body {
 	margin: 0 auto;
+	background-color: #fffffe;
+	background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zm33.414-6l5.95-5.95L45.95.636 40 6.586 34.05.636 32.636 2.05 38.586 8l-5.95 5.95 1.414 1.414L40 9.414l5.95 5.95 1.414-1.414L41.414 8zM40 48c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm0-2c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6zM9.414 40l5.95-5.95-1.414-1.414L8 38.586l-5.95-5.95L.636 34.05 6.586 40l-5.95 5.95 1.414 1.414L8 41.414l5.95 5.95 1.414-1.414L9.414 40z' fill='%23ebebeb' fill-opacity='0.68' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 header {
@@ -25,32 +30,82 @@ header {
 	margin-bottom: 2rem;
 }
 
+#game {
+	max-width: 35rem;
+	margin: 0 auto;
+}
+
 section {
 	width: 90%;
-	max-width: 40rem;
 	margin: auto;
+	background: rgba(255, 255, 255, 0.4);
+	backdrop-filter: blur(2px);
+}
+
+#title {
+	transform: rotate(-3deg);
+}
+
+.name-input {
+	font: inherit;
+	font-size: 1.4rem;
+	font-weight: bold;
+	border: none;
+	text-align: center;
+	background: transparent;
+	height: 1.4rem;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 1rem;
+}
+
+.name-input::placeholder {
+	opacity: 0.75;
+	font-weight: normal;
+}
+
+input:focus {
+	outline: none;
 }
 
 .healthbar {
 	height: 20px;
 	margin: 1rem 2rem;
-	background: #fde5e5;
 	border-radius: 1000px;
+	background-color: #ebebeb;
 	overflow: hidden;
 }
 
 .healthbar__value {
 	background-color: var(--green-color);
-	width: 100%;
 	height: 100%;
+	transition: all 350ms ease-out;
+	transform: scaleX(1);
+	transform-origin: left;
 }
 
 .container {
 	text-align: center;
-	padding: 0.5rem;
+	padding: 0.4rem;
 	margin: 1rem auto;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 	border-radius: 12px;
+	border-radius: 50px;
+	box-shadow: 5px 5px 0 #d9d9d9, -5px -5px 0 rgba(201, 66, 88, 0.25);
+}
+
+h1 {
+	font-size: 2.4rem;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 1.4rem;
+}
+
+h3 {
+	text-transform: uppercase;
 }
 
 #monster h2,
@@ -58,12 +113,18 @@ section {
 	margin: 0.25rem;
 }
 
-#controls {
+.controls {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	background: none;
+	backdrop-filter: none;
+}
+
+.controls button {
+	margin: 0.6rem;
 }
 
 button {
@@ -73,10 +134,12 @@ button {
 	color: white;
 	padding: 1rem 2rem;
 	border-radius: 12px;
-	margin: 1rem;
 	width: 12rem;
 	cursor: pointer;
 	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+	text-transform: uppercase;
+	text-align: center;
+	user-select: none;
 }
 
 button:focus {
@@ -98,6 +161,10 @@ button:disabled {
 	cursor: not-allowed;
 }
 
+#log {
+	padding-bottom: 1rem;
+}
+
 #log ul {
 	list-style: none;
 	margin: 0;
@@ -105,21 +172,35 @@ button:disabled {
 }
 
 #log li {
-	margin: 0.5rem 0;
+	margin: 0 auto;
+	max-width: 400px;
+}
+
+.log-value {
+	font-weight: bold;
+	font-size: 1.4em;
 }
 
 .log--player {
-	color: #7700ff;
+	color: var(--blue-color);
 }
 
 .log--monster {
-	color: #da8d00;
+	color: var(--yellow-color);
 }
 
 .log--damage {
-	color: red;
+	color: var(--accent-color-2);
+}
+
+.log--super-damage {
+	color: var(--accent-color-2);
 }
 
 .log--heal {
-	color: green;
+	color: var(--green-color-2);
+}
+
+#result-container {
+	user-select: none;
 }

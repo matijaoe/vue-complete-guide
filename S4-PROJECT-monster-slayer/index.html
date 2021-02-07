@@ -8,42 +8,122 @@
 			href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://csshake.surge.sh/csshake.min.css"
+		/>
 		<link rel="stylesheet" href="styles.css" />
 		<script src="https://unpkg.com/vue@next" defer></script>
 		<script src="app.js" defer></script>
 	</head>
 	<body>
 		<header>
-			<h1>Monster Slayer</h1>
+			<div class="shake-opacity shake-freeze">
+				<h1 id="title">Monster Slayer 🦥</h1>
+			</div>
 		</header>
-		<div id="game">
 
+		<div id="game">
 			<section id="monster" class="container">
 				<h2>Monster Health</h2>
-				<div class="healthbar">
-					<div class="healthbar__value"></div>
+				<div class="healthbar" :title="monsterHealth + '%'">
+					<div
+						class="healthbar__value"
+						:style="monsterBarStyles"
+					></div>
 				</div>
 			</section>
 
-			<section id="player" class="container">
-				<h2>Your Health</h2>
-				<div class="healthbar">
-					<div class="healthbar__value"></div>
+			<section v-if="playerName" id="player" class="container">
+				<h2>{{ playerName }} Health</h2>
+				<div class="healthbar" :title="playerHealth + '%'">
+					<div
+						class="healthbar__value"
+						:style="playerBarStyles"
+					></div>
 				</div>
 			</section>
-
-			<section id="controls">
-				<button>ATTACK</button>
-				<button>SPECIAL ATTACK</button>
-				<button>HEAL</button>
-				<button>SURRENDER</button>
+			<section v-else class="container">
+				<input
+					v-else
+					class="name-input"
+					type="text"
+					@keydown.enter="setPlayerName"
+					placeholder="Choose your name"
+				/>
 			</section>
 
-			<section id="log" class="container">
+			<section v-if="winner" class="container" id="result-container">
+				<h3>Game Over!</h3>
+				<h1 v-if="winner === 'player'">You won! 😎</h1>
+				<h1 v-else-if="winner === 'monster'">You lost! 🚽</h1>
+				<h1 v-else>It's a draw! 🌓</h1>
+			</section>
+			<section v-if="winner" class="controls">
+				<button @click="restartGame">Restart</button>
+			</section>
+
+			<section v-else-if="playerName" class="controls">
+				<button @click="attackMonster">Attack</button>
+				<div class="shake">
+					<button
+						:disabled="mayUseSpecialAttack"
+						@click="specialAttackMonster"
+						title="Can use every third round"
+					>
+						Special Attack
+					</button>
+				</div>
+				<button @click="healPlayer">Heal</button>
+				<button @click="surrenderPlayer">Surrender</button>
+			</section>
+
+			<section v-if="playerName" id="log" class="container">
 				<h2>Battle Log</h2>
-				<ul></ul>
+				<ul>
+					<li v-for="log in logMessages" :title="currentTime()">
+						<span :class="['log-value', stylePlayer(log)]">
+							{{ log.actionBy === playerName ? playerName :
+							'Monster' }}
+						</span>
+
+						<span v-if="log.actionType === 'heal'">
+							heals himself for
+							<span class="log-value log--heal">
+								{{ log.actionValue }}
+							</span>
+							points
+						</span>
+
+						<span v-else-if="log.actionType === 'special-attack'">
+							special attacks and deals
+							<span class="log-value log--super-damage"
+								>{{ log.actionValue }}</span
+							>
+							damage
+						</span>
+
+						<span v-else-if="log.actionType === 'attack'">
+							attacks and deals
+							<span class="log-value log--damage"
+								>{{ log.actionValue }}</span
+							>
+							damage
+						</span>
+
+						<span v-else-if="log.actionType === 'win'"> wins </span>
+
+						<span v-else-if="log.actionType === 'loss'">
+							losses
+						</span>
+
+						<span v-else-if="log.actionType === 'forfeit'">
+							surrenders
+						</span>
+					</li>
+				</ul>
 			</section>
-            
 		</div>
 	</body>
 </html>
