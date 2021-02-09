@@ -84,8 +84,11 @@
 				<ul>
 					<li v-for="log in logMessages" :title="currentTime()">
 						<span :class="['log-value', stylePlayer(log)]">
-							{{ log.actionBy === playerName ? playerName :
-							'Monster' }}
+							{{
+								log.actionBy === playerName
+									? playerName
+									: 'Monster'
+							}}
 						</span>
 
 						<span v-if="log.actionType === 'heal'">
@@ -98,21 +101,21 @@
 
 						<span v-else-if="log.actionType === 'special-attack'">
 							special attacks and deals
-							<span class="log-value log--super-damage"
-								>{{ log.actionValue }}</span
-							>
+							<span class="log-value log--super-damage">
+								{{ log.actionValue }}
+							</span>
 							damage
 						</span>
 
 						<span v-else-if="log.actionType === 'attack'">
 							attacks and deals
-							<span class="log-value log--damage"
-								>{{ log.actionValue }}</span
-							>
+							<span class="log-value log--damage">
+								{{ log.actionValue }}
+							</span>
 							damage
 						</span>
 
-						<span v-else-if="log.actionType === 'win'"> wins </span>
+						<span v-else-if="log.actionType === 'win'">wins</span>
 
 						<span v-else-if="log.actionType === 'loss'">
 							looses

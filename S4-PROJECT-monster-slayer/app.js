@@ -1,9 +1,11 @@
+/* eslint-disable no-plusplus */
 // https://monster-slayer.mat2ja.vercel.app/
 
 function getRandomValue(min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
+// eslint-disable-next-line no-undef
 const app = Vue.createApp({
 	data() {
 		return {
@@ -18,11 +20,11 @@ const app = Vue.createApp({
 	computed: {
 		monsterBarStyles() {
 			const damage = this.monsterHealth / 100;
-			return {transform: `scaleX(${damage})`};
+			return { transform: `scaleX(${damage})` };
 		},
 		playerBarStyles() {
 			const damage = this.playerHealth / 100;
-			return {transform: `scaleX(${damage})`};
+			return { transform: `scaleX(${damage})` };
 		},
 		mayUseSpecialAttack() {
 			return this.currentRound % 3 !== 0;
@@ -136,8 +138,8 @@ const app = Vue.createApp({
 			const hours = now.getHours();
 			const minutes = now.getMinutes();
 			const seconds = now.getSeconds();
-			return `${hours}:${minutes < 10 ? '0' + minutes : minutes}:${
-				seconds < 10 ? '0' + seconds : seconds
+			return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}:${
+				seconds < 10 ? `0${seconds}` : seconds
 			}`;
 		},
 	},
