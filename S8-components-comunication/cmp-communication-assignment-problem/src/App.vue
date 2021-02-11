@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<user-data @enterUser="showActiveUser"></user-data>
-		<active-user :username="username" :age="userAge"></active-user>
+		<active-user :username="user.name" :userAge="user.age"></active-user>
 	</div>
 </template>
 
@@ -9,14 +9,19 @@
 export default {
 	data() {
 		return {
-			username: '',
-			userAge: '',
+			user: {
+				name: '',
+				age: '',
+			},
 		};
 	},
 	methods: {
 		showActiveUser(name, age) {
-			this.username = name;
-			this.userAge = +age;
+			// console.log(typeof age);
+			this.user = {
+				name,
+				age,
+			};
 		},
 	},
 };

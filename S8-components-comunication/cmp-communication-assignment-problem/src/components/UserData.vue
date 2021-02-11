@@ -2,7 +2,7 @@
 	<form @submit.prevent="submitUserData" ref="form">
 		<input type="text" v-model="enteredName" placeholder="Name" />
 		<input type="number" v-model="enteredAge" placeholder="Age" />
-		<button>Save user</button>
+		<button>Set user data</button>
 	</form>
 </template>
 
@@ -17,7 +17,7 @@ export default {
 	},
 	methods: {
 		submitUserData() {
-			this.$emit('enter-user', this.enteredName, this.enteredAge);
+			this.$emit('enter-user', this.enteredName, +this.enteredAge);
 			this.enteredName = '';
 			this.enteredAge = '';
 			this.$refs.form.reset();

@@ -1,14 +1,20 @@
 <template>
-	<section v-show="username && age">
-		<h2>{{ username }} is {{ age }} yo</h2>
+	<section v-show="username && userAge">
+		<h2>{{ username }} is {{ userAge }} yo</h2>
 	</section>
 </template>
 
 <script>
 export default {
 	props: {
-		username: String,
-		age: Number,
+		username: {
+			type: String,
+			required: true,
+		},
+		userAge: {
+			type: Number,
+			required: true,
+		},
 	},
 };
 </script>
