@@ -1,15 +1,20 @@
 <template>
 	<li>
-		<div>
+		<base-card>
 			<header>
 				<h3>{{ title }}</h3>
-				<button>Delete</button>
+				<base-button mode="flat-icon">
+					<ion-icon name="close-sharp"></ion-icon>
+				</base-button>
 			</header>
-		</div>
-		<p>{{ description }}</p>
-		<nav>
-			<a :href="link" target="_blank">Goto resource</a>
-		</nav>
+			<p>{{ description }}</p>
+			<nav>
+				<a :href="link" target="_blank">
+					Goto resource
+					<ion-icon name="chevron-forward-sharp"></ion-icon>
+				</a>
+			</nav>
+		</base-card>
 	</li>
 </template>
 
@@ -21,36 +26,37 @@ export default {
 
 <style scoped>
 li {
-	margin: auto;
-	max-width: 40rem;
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
+	margin: 2.4rem auto;
 }
 
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 0.5em;
 }
 
 h3 {
-	font-size: 1.4rem;
-	margin: 0.5rem 0;
+	font-size: 2.4rem;
+	font-family: 'Permanent Marker', cursive;
 }
 
 p {
-	margin: 0.5rem 0;
+	margin-bottom: 1em;
+}
+nav {
+	position: relative;
 }
 
 a {
 	text-decoration: none;
 	color: inherit;
-	padding: 0.25em 0.4em;
-	position: relative;
-	background: hsla(27, 83%, 47%, 0.25);
+	padding: 0.2em 0.3em;
 	transition: 250ms ease-out;
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	overflow: hidden;
 }
 
 a::before {
@@ -58,22 +64,22 @@ a::before {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	right: 0;
+	width: 100%;
 	height: 100%;
-	background: #da6d14;
+	background: var(--orange-light);
 	z-index: -1;
 	transition: 150ms ease-out;
-	transform: scaleY(0.12);
+	transform: scaleY(0.4);
 	transform-origin: bottom;
-}
-
-a:hover,
-a:active {
-	color: white;
 }
 
 a:hover::before,
 a:hover::before {
-	transform: scaleY(1);
+	transform: scaleY(1.05);
+}
+
+a > ion-icon {
+	font-size: 0.9em;
+	margin-left: 0.8rem;
 }
 </style>

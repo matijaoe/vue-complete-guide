@@ -1,66 +1,64 @@
 <template>
-	<StoredResources :resources="storedResources" />
+	<TheHeader :title="title" />
+	<TheResources />
 </template>
 
 <script>
-import StoredResources from './components/learning-resources/StoredResources.vue';
+import TheHeader from './components/layouts/TheHeader';
+import TheResources from './components/learning-resources/TheResources';
 
 export default {
 	components: {
-		StoredResources,
+		TheHeader,
+		TheResources,
 	},
+
 	data() {
 		return {
-			storedResources: [
-				{
-					id: 'vue-official-guide',
-					title: 'Vue Official Guide',
-					description: 'The official Vue.js documentation',
-					link: 'https://vuejs.org',
-				},
-				{
-					id: 'react-official-guide',
-					title: 'React Official Guide',
-					description: 'The official React.js documentation',
-					link: 'https://reactjs.org',
-				},
-				{
-					id: 'svelte-official-guide',
-					title: 'Svelte Official Guide',
-					description: 'The official Svelte.js documentation',
-					link: 'https://svelte.dev/',
-				},
-				{
-					id: 'angular-official-guide',
-					title: 'Angular Official Guide',
-					description: 'The official Angular.js documentation',
-					link: 'https://angular.io/',
-				},
-				{
-					id: 'jquery-official-guide',
-					title: 'jQuery Official Guide',
-					description: 'The official jQuery documentation',
-					link: 'https://jquery.com/',
-				},
-			],
+			title: 'Javascript Frameworks Galore',
 		};
 	},
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+:root {
+	--orange: #f0932b;
+	--orange-light: #f5d5ae;
+	--orange-light-2: #fff2e1;
+	--gray: #cacaca;
+	--gray-2: #8a8a8a;
+	--color-light: white;
+	--color-dark: black;
+}
 
 * {
 	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 62.5%;
 }
 
 body {
-	margin: 0;
-	background: #fefefe;
+	background: var(--gray);
+	font-size: 1.6rem;
+}
+
+ion-icon {
+	font-size: 24px;
+	display: block;
+}
+
+.row {
+	max-width: 56rem;
+	margin: 0 auto;
+	padding: 0 1.6rem;
 }
 </style>
