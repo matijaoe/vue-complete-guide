@@ -3,7 +3,7 @@
 		<base-card>
 			<header>
 				<h3>{{ title }}</h3>
-				<base-button mode="flat-icon">
+				<base-button mode="flat-icon" @click="deleteResource(id)">
 					<ion-icon name="close-sharp"></ion-icon>
 				</base-button>
 			</header>
@@ -20,7 +20,8 @@
 
 <script>
 export default {
-	props: ['title', 'description', 'link'],
+	props: ['id', 'title', 'description', 'link'],
+	inject: ['deleteResource'],
 };
 </script>
 
@@ -52,11 +53,10 @@ a {
 	text-decoration: none;
 	color: inherit;
 	padding: 0.2em 0.3em;
-	transition: 250ms ease-out;
 	position: relative;
 	display: inline-flex;
 	align-items: center;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 
 a::before {
@@ -65,17 +65,17 @@ a::before {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	height: 98%;
 	background: var(--orange-light);
 	z-index: -1;
-	transition: 150ms ease-out;
+	transition: 250ms cubic-bezier(0.61, 0.92, 0.72, 1.28);
 	transform: scaleY(0.4);
 	transform-origin: bottom;
 }
 
 a:hover::before,
 a:hover::before {
-	transform: scaleY(1.05);
+	transform: scaleY(1.01);
 }
 
 a > ion-icon {

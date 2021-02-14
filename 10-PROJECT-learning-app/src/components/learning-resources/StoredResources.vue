@@ -3,6 +3,7 @@
 		<LearningResource
 			v-for="{ id, title, description, link } in resources"
 			:key="id"
+			:id="id"
 			:title="title"
 			:description="description"
 			:link="link"

@@ -15,8 +15,10 @@
 				>
 			</base-card>
 		</div>
-
-		<component :is="selectedTab"></component>
+		<!-- component will be cached -->
+		<keep-alive>
+			<component :is="selectedTab"></component>
+		</keep-alive>
 	</div>
 </template>
 
@@ -32,6 +34,8 @@ export default {
 	provide() {
 		return {
 			resources: this.storedResources,
+			addResource: this.addResource,
+			deleteResource: this.removeResource,
 		};
 	},
 	data() {
@@ -75,15 +79,36 @@ export default {
 		setSelectedTab(tab) {
 			this.selectedTab = tab;
 		},
+		addResource(title, description, url) {
+			const newResource = {
+				id: new Date().toISOString(),
+				title,
+				description,
+				link: url,
+			};
+			this.storedResources.unshift(newResource);
+			this.selectedTab = 'stored-resources';
+		},
+		removeResource(resId) {
+			const resIndex = this.storedResources.findIndex(
+				(res) => res.id === resId
+			);
+
+			// delete it in-place bcs if we change the reference,
+			// it will be a new object, not connected to the addResource tab and resources we provided
+			this.storedResources.splice(resIndex, 1);
+		},
 	},
 	computed: {
 		storedResBtnMode() {
 			return this.selectedTab === 'stored-resources'
-				? 'cta--light'
-				: 'flat';
+				? 'outline--selected'
+				: 'outline';
 		},
 		addResBtnMode() {
-			return this.selectedTab === 'add-resource' ? 'cta--light' : 'flat';
+			return this.selectedTab === 'add-resource'
+				? 'outline--selected'
+				: 'outline';
 		},
 	},
 };

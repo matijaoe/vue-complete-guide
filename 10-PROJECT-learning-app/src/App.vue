@@ -30,7 +30,8 @@ export default {
 	--orange-light: #f5d5ae;
 	--orange-light-2: #fff2e1;
 	--gray: #cacaca;
-	--gray-2: #8a8a8a;
+	--gray-2: #a5a5a5;
+	--gray-3: #8a8a8a;
 	--color-light: white;
 	--color-dark: black;
 }
@@ -44,6 +45,7 @@ export default {
 html {
 	font-family: 'Work Sans', sans-serif;
 	font-size: 62.5%;
+	overflow-y: overlay;
 }
 
 body {

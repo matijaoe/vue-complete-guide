@@ -19,12 +19,14 @@ button {
 	font-size: 0.9em;
 	font-weight: bold;
 	transition: 150ms all ease-out;
+
 	background: var(--gray);
+	color: var(--color-dark);
 }
 
 button:hover,
 button:active {
-	background: var(--orange);
+	background: var(--orange-light);
 }
 
 .cta {
@@ -32,46 +34,31 @@ button:active {
 	background: var(--orange);
 }
 
-.cta--light {
-	background: var(--color-light);
-	color: var(color-dark);
-	border-color: currentColor;
-}
-
-.cta:hover {
+.cta:hover,
+.cta:active {
 	background: var(--orange-light);
 }
-.cta:active {
-	background: var(--orange);
-}
 
-.cta--light:hover,
-.cta--light:active {
-	background: var(--orange);
-}
-
-.flat {
-	color: var(--color-dark);
-	border-color: transparent;
+.outline {
 	background: transparent;
-}
-
-.flat:hover {
 	border-color: var(--color-dark);
 }
 
-.flat:active {
+.outline--selected {
 	background: var(--color-light);
+	border-color: var(--color-dark);
 }
 
 .flat-icon {
 	padding: 0.25em;
 	background: transparent;
 	border-color: transparent;
+	color: var(--color-dark);
 }
 
 .flat-icon:hover,
 .flat-icon:active {
 	color: var(--orange);
+	background: transparent;
 }
 </style>
