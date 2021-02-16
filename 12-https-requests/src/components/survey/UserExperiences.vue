@@ -8,11 +8,12 @@
 				>
 			</div>
 			<h4 v-if="isLoading">Loading...</h4>
-			<h4 v-else-if="!isLoading && results && results.length === 0">
+			<h4 v-else-if="!isLoading && error">{{ error }}</h4>
+			<h4 v-else-if="!isLoading && results?.length === 0">
 				No stored experiences found. Start adding some survey results
 				first.
 			</h4>
-			<ul v-else-if="!isLoading && results && results.length > 0">
+			<ul v-else>
 				<survey-result
 					v-for="result in results"
 					:key="result.id"
@@ -34,29 +35,62 @@ export default {
 	},
 	data() {
 		return {
-			databaseUrl:
-				'https://vue-http-demo-d5980-default-rtdb.firebaseio.com/surveys.json',
 			results: [],
 			isLoading: false,
+			error: null,
+			databaseUrl:
+				'https://vue-http-demo-d5980-default-rtdb.firebaseio.com/surveys.json',
 		};
 	},
 	methods: {
 		async loadExperiences() {
 			this.isLoading = true;
-			const { data } = await axios.get(this.databaseUrl);
-			this.isLoading = false;
+			this.error = null;
 
-			const results = [];
-			for (const id in data) {
-				const { name, rating } = data[id];
-				results.unshift({
-					id,
-					name,
-					rating,
-				});
+			try {
+				const { data } = await axios.get(this.databaseUrl);
+
+				const results = [];
+				for (const id in data) {
+					const { name, rating } = data[id];
+					results.unshift({
+						id,
+						name,
+						rating,
+					});
+				}
+
+				this.results = results;
+				console.log(results);
+			} catch (error) {
+				this.error = 'Failed to fetch data - please try again later';
+			} finally {
+				this.isLoading = false;
 			}
-			this.results = results;
-			console.log(results);
+
+			// axios
+			// 	.get(this.databaseUrl)
+			// 	.then(({ data }) => {
+			// 		this.isLoading = false;
+
+			// 		const results = [];
+			// 		for (const id in data) {
+			// 			const { name, rating } = data[id];
+			// 			results.unshift({
+			// 				id,
+			// 				name,
+			// 				rating,
+			// 			});
+			// 		}
+
+			// 		this.results = results;
+			// 		console.log(results);
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log(error);
+			// 		this.isLoading = false;
+			// 		this.error = 'Failed to fetch data - please try again later';
+			// 	});
 		},
 	},
 	mounted() {

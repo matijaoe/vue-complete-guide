@@ -53,6 +53,8 @@
 					provided data.
 				</p>
 
+				<h3 v-if="error">{{ error }}</h3>
+
 				<div>
 					<base-button>Submit</base-button>
 				</div>
@@ -62,7 +64,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
 	data() {
@@ -70,6 +72,9 @@ export default {
 			enteredName: '',
 			chosenRating: null,
 			invalidInput: false,
+			error: null,
+			databaseUrl:
+				'https://vue-http-demo-d5980-default-rtdb.firebaseio.com/surveys.json',
 		};
 	},
 	// emits: ['survey-submit'],
@@ -80,31 +85,52 @@ export default {
 				return;
 			}
 			this.invalidInput = false;
+			this.error = null;
 
 			// this.$emit('survey-submit', {
 			// 	userName: this.enteredName,
 			// 	rating: this.chosenRating,
 			// });
 
+			fetch(this.databaseUrl, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					name: this.enteredName,
+					rating: this.chosenRating,
+				}),
+				// body: {
+				// 	name: this.enteredName,
+				// 	rating: this.chosenRating,
+				// },
+			})
+				.then((res) => {
+					// handle 400 error, (ie if we dont stringify body)
+					if (res.ok) {
+						//
+					} else {
+						throw new Error('Could not save data!');
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					this.error = error.message;
+				});
 
-			// fetch(databaseUrl, {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json',
-			// 	},
-			// 	body: JSON.stringify({
+			// axios
+			// 	.post(this.databaseUrl, {
 			// 		name: this.enteredName,
 			// 		rating: this.chosenRating,
-			// 	}),
-			// });
+			// 	})
+			// 	.catch((error) => {
+			// 		console.log(error);
+			// 		this.error = 'Something went wrong, try again later';
+			// 	});
 
-			axios.post('https://vue-http-demo-d5980-default-rtdb.firebaseio.com/surveys.json', {
-				name: this.enteredName,
-				rating: this.chosenRating,
-			});
-
-			this.enteredName = '';
-			this.chosenRating = null;
+			// this.enteredName = '';
+			// this.chosenRating = null;
 		},
 	},
 };
