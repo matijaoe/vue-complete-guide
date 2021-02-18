@@ -21,6 +21,9 @@ export default {
 		UserItem,
 	},
 	inject: ['teams', 'users'],
+	props: ['teamId'],
+	// ako imam props, netrebam dohvacat params iz $route urla
+	// makes component more reusable cos now i can pass in a prop to the component + it automatically fetches it from $route url
 	data() {
 		return {
 			teamName: '',
@@ -28,8 +31,7 @@ export default {
 		};
 	},
 	methods: {
-		loadTeamMembers(route) {
-			const teamId = route.params.teamId; // get the current url param
+		loadTeamMembers(teamId) {
 			const selectedTeam = this.teams.find((team) => team.id === teamId);
 
 			if (!selectedTeam) return;
@@ -49,13 +51,23 @@ export default {
 		},
 	},
 	created() {
-		// this.$route.path // /teams/t1
-		this.loadTeamMembers(this.$route);
+		// this.loadTeamMembers(this.$route.params.teamId);
+		// console.log(this.$route);
+		this.loadTeamMembers(this.teamId);
+	},
+	beforeRouteUpdate(to, from, next) {
+		console.log('TeamMembers component beforeRouteUpdate');
+		console.log(to, from);
+		// this.loadTeamMembers(this.teamId); // usint this it would be less flexible though as it relies on using routes instead of props
+		next();
 	},
 	watch: {
-		$route(newRoute) {
-			this.loadTeamMembers(newRoute);
+		teamId(newId) {
+			this.loadTeamMembers(newId);
 		},
+		// $route(newRoute) {
+		// 	this.loadTeamMembers(newRoute.params.teamId);
+		// },
 	},
 };
 </script>
