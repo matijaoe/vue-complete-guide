@@ -1,4 +1,10 @@
 <template>
+	<router-view v-slot="slotProps">
+		<transition name="route" mode="out-in">
+			<component :is="slotProps.Component" />
+		</transition>
+	</router-view>
+
 	<div class="container">
 		<users-list></users-list>
 	</div>
@@ -9,8 +15,9 @@
 	</div>
 
 	<div class="container">
+		<!-- appear makes animation run on initial page load -->
 		<!-- <transition name="para" enter-to-class="some-class"> -->
-		<transition name="para">
+		<transition name="para" appear>
 			<p v-if="paraIsVisible">This is only sometimes visible</p>
 		</transition>
 		<button @click="toggleParagraph">Toggle Paragraph (CSS)</button>
@@ -58,6 +65,7 @@
 
 <script>
 import UsersList from './components/UsersList';
+
 export default {
 	components: {
 		UsersList,
@@ -66,7 +74,7 @@ export default {
 		return {
 			animatedBlock: false,
 			dialogIsVisible: false,
-			paraIsVisible: false,
+			paraIsVisible: true,
 			para2IsVisible: false,
 			usersAreVisible: false,
 			enterInterval: null,
@@ -257,6 +265,23 @@ button:active {
 .fade-button-enter-to,
 .fade-button-leave-from {
 	opacity: 1;
+}
+
+.route-enter-from {
+	opacity: 0;
+	transform: translateX(100px);
+}
+.route-enter-active {
+	transition: all 300ms ease-out;
+}
+
+.route-leave-to {
+	opacity: 0;
+	transform: translateX(-100px);
+}
+
+.route-leave-active {
+	transition: all 300ms ease-in;
 }
 
 @keyframes slide-scale {
