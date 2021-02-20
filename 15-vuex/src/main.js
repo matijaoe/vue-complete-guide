@@ -3,20 +3,32 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
+// manage state application wide (instead of provide/project in complex apps)
 const store = createStore({
   state() {
     return {
-      counter: 0
+      counter: 0,
+      isLoggedIn: false
     };
   },
   mutations: {
     increment(state) {
-      // VERY BAD PRACTICE DOING ASYNCHRONUS CODE HERE
+      // VERY BAD PRACTICE DOING ASYNCHRONUS CODE HERE, just modify state
       state.counter++;
     },
     increase(state, payload) {
       // payload is our argument (any type)
       state.counter += payload.value;
+    },
+    // login(state) {
+    //   state.isLoggedIn = true;
+    // },
+    // logout(state) {
+    //   state.isLoggedIn = false;
+    // }
+    setAuth(state, payload) {
+      console.log(payload);
+      state.isLoggedIn = payload.isAuth;
     }
   },
   actions: {
@@ -33,6 +45,12 @@ const store = createStore({
       // console.log(payload)
       context.commit('increase', payload);
       // never manipulate the state direcly, use mutations (commit) for that
+    },
+    login({ commit }) {
+      commit('setAuth', { isAuth: true });
+    },
+    logout({ commit }) {
+      commit('setAuth', { isAuth: false });
     }
   },
   getters: {
@@ -49,6 +67,9 @@ const store = createStore({
       } else {
         return finalCounter;
       }
+    },
+    userIsAuthenticated(state) {
+      return state.isLoggedIn;
     }
   }
 });
