@@ -16,7 +16,7 @@ export default {
 
 		//* map `this.counter` to `this.$store.getters.finalCounter`
 		...mapGetters({
-			counter: 'finalCounter',
+			counter: 'numbers/finalCounter',
 		}),
 	},
 };

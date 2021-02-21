@@ -49,11 +49,12 @@ export default {
 
 			//* ACTIONS
 			this.$store.dispatch({
-				type: 'increase',
+				type: 'numbers/increase',
 				value: 10,
 			});
 		},
-		...mapActions(['increase']),
+		// ...mapActions(['increase']),
+		...mapActions('numbers', ['increase']),
 	},
 };
 </script>

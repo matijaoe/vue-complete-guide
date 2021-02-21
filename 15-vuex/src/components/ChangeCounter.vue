@@ -25,7 +25,15 @@ export default {
 		//* ...mapActions(['increment', 'increase']),
 		// basically importamo akcije koje nam trebaju umjesto da ih redefiniramo
 
-		...mapActions({ inc: 'increment', increase: 'increase' }),
+		// ...mapActions({
+		// 	inc: 'numbers/increment',
+		// 	increase: 'numbers/increase',
+		// }),
+		...mapActions('numbers', {
+			inc: 'increment',
+			increase: 'increase',
+		}),
+		// namespace is the optional first argument
 	},
 };
 </script>
