@@ -23,6 +23,9 @@ export default {
 		ProductItem,
 	},
 	computed: {
+		// products() {
+		// 	return this.$store.getters['prods/products'];
+		// },
 		...mapGetters('prods', ['products']),
 	},
 };

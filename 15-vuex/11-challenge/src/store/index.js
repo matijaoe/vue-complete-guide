@@ -27,7 +27,7 @@ const store = createStore({
     }
   },
   getters: {
-    isLoggedIn(state) {
+    isAuthenticated(state) {
       return state.isLoggedIn;
     }
   }

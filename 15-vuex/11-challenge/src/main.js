@@ -1,3 +1,5 @@
+// https://11-challenge.vercel.app
+
 import { createApp } from 'vue';
 
 import router from './router.js';

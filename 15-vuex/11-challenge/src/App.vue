@@ -5,17 +5,10 @@
 
 <script>
 import TheHeader from './components/nav/TheHeader.vue';
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	components: {
 		TheHeader,
-	},
-	computed: {
-		...mapGetters('isLoggedIn'),
-	},
-	methods: {
-		...mapActions(['login', 'logout']),
 	},
 };
 </script>

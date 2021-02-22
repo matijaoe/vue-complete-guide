@@ -25,15 +25,11 @@ export default {
 	props: ['id', 'image', 'title', 'price', 'description'],
 	methods: {
 		addProductToCart() {
-			const item = {
+			this.addToCart({
 				id: this.id,
-				image: this.image,
-				title: this.title,
-				price: this.price,
-			};
-			this.addToCart({ product: item });
+			});
 		},
-		...mapActions(['addToCart']),
+		...mapActions('cart', ['addToCart']),
 	},
 };
 </script>

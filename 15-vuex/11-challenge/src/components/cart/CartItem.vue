@@ -32,9 +32,10 @@ export default {
 	},
 	methods: {
 		remove() {
+			// this.$store.dispatch('cart/removeFromCart', this.prodId)
 			this.removeFromCart(this.prodId);
 		},
-		...mapActions(['removeFromCart']),
+		...mapActions('cart', ['removeFromCart']),
 	},
 };
 </script>

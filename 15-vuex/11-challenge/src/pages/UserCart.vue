@@ -30,7 +30,7 @@ export default {
 		CartItem,
 	},
 	computed: {
-		...mapGetters(['products', 'totalSum']),
+		...mapGetters('cart', ['products', 'totalSum']),
 	},
 };
 </script>
