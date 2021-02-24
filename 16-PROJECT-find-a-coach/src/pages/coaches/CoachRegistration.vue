@@ -1,3 +1,30 @@
 <template>
-	<form action="">Register</form>
+	<section>
+		<base-card mode="shadow">
+			<h2>Register as a coach now!</h2>
+			<CoachForm @save-data="saveData" />
+		</base-card>
+	</section>
 </template>
+
+<script>
+import CoachForm from '../../components/coaches/CoachForm';
+export default {
+	components: { CoachForm },
+	methods: {
+		saveData(data) {
+			this.$store.dispatch('coaches/registerCoach', data);
+			// better than push bcs we cant go back to the page
+			this.$router.replace('/coaches'); 
+		},
+	},
+};
+</script>
+
+
+<style scoped>
+h2 {
+	margin-bottom: 1.6rem;
+	color: var(--purple-2);
+}
+</style>

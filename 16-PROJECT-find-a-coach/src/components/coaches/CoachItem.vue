@@ -67,6 +67,7 @@ h3 {
 
 h4 {
 	font-size: 1.6rem;
+	margin-bottom: 0.4rem;
 }
 
 .actions {

@@ -62,21 +62,21 @@ export default {
 
 <style scoped>
 h2 {
-	margin-bottom: 1.6rem;
+	margin-bottom: 1rem;
 }
 
 .filters {
 	display: flex;
-	gap: 2rem;
+	gap: 2.4rem;
 }
 
 .filter-option {
-	/* background: var(--pink-2); */
 	padding: 0.5em;
+	font-size: 1.8rem;
 }
 
 .filter-option label {
-	margin-left: 0.8rem;
+	margin-left: 1.2rem;
 	user-select: none;
 }
 
@@ -84,7 +84,18 @@ h2 {
 	font-weight: bold;
 }
 
-h2 {
-	margin: 0.5rem 0;
+input {
+	transform: scale(1.4);
+}
+
+@media only screen and (max-width: 600px) {
+	html {
+		/* font-size: 56.25%; */
+	}
+
+	.filter-option {
+		padding: 0.25em;
+		font-size: 1.6rem;
+	}
 }
 </style>

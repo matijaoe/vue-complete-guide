@@ -2,7 +2,7 @@
 	<section>
 		<base-card>
 			<h2>{{ fullName }}</h2>
-			<h3>{{ rate }}/hour</h3>
+			<h3>${{ rate }}/hour</h3>
 		</base-card>
 	</section>
 	<section>
@@ -11,7 +11,7 @@
 				<h2>Interested? Reach out now!</h2>
 				<base-button link :to="contactLink">Contact</base-button>
 			</header>
-			<router-view></router-view>
+			<RouterView />
 		</base-card>
 	</section>
 	<section>
@@ -71,13 +71,11 @@ export default {
 }
 h2 {
 	margin-bottom: 0.5em;
+	color: var(--purple-2);
 }
 
 h3 {
 	margin-bottom: 0.5em;
 }
 
-header {
-	margin-bottom: 1.6rem;
-}
 </style>

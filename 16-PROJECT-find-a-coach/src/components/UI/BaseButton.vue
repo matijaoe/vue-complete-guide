@@ -21,9 +21,11 @@ export default {
 			default: false,
 		},
 		to: {
-			type: Boolean,
+			type: Object,
 			required: false,
-			default: false,
+			default: () => {
+				'home';
+			},
 		},
 	},
 };

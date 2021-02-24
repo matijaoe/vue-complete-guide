@@ -1,17 +1,20 @@
 <template>
 	<div class="row">
 		<section>
-			<base-card mode="full">
+			<base-card mode="flat">
 				<div class="controls">
-					<base-button mode="flat">Refresh</base-button>
-					<base-button link :to="{ name: 'register' }"
+					<base-button mode="flat">
+						Refresh
+						<box-icon name="refresh"></box-icon>
+					</base-button>
+					<base-button v-if="!isCoach" link :to="{ name: 'register' }"
 						>Register as coach
 					</base-button>
 				</div>
 			</base-card>
 			<CoachFilter @change-filter="setFilters" />
 			<ul v-if="hasCoaches">
-				<coach-item
+				<CoachItem
 					v-for="coach in filteredCoaches"
 					:key="coach.id"
 					:id="coach.id"
@@ -19,7 +22,7 @@
 					:last-name="coach.lastName"
 					:rate="coach.hourlyRate"
 					:areas="coach.areas"
-				></coach-item>
+				/>
 			</ul>
 			<h3 v-else>No coaches found.</h3>
 		</section>
@@ -45,38 +48,24 @@ export default {
 		};
 	},
 	computed: {
+		isCoach() {
+			return this.$store.getters['coaches/isCoach'];
+		},
 		filteredCoaches() {
 			const coaches = this.$store.getters['coaches/coaches'];
+
+			const selectedFilters = Object.keys(this.activeFilters).reduce(
+				(arr, filter) => {
+					this.activeFilters[filter] && arr.push(filter);
+					return arr;
+				},
+				[]
+			);
+
 			return coaches.filter((coach) => {
-				// if (
-				// 	this.activeFilters.frontend &&
-				// 	coach.areas.includes('frontend')
-				// ) {
-				// 	return true;
-				// }
-				// if (
-				// 	this.activeFilters.backend &&
-				// 	coach.areas.includes('backend')
-				// ) {
-				// 	return true;
-				// }
-				// if (
-				// 	this.activeFilters.career &&
-				// 	coach.areas.includes('career')
-				// ) {
-				// 	return true;
-				// }
-				// return false;
-
-				const selectedFilters = Object.keys(this.activeFilters).reduce(
-					(arr, filter) => {
-						this.activeFilters[filter] && arr.push(filter);
-						return arr;
-					},
-					[]
-				);
-
 				for (const filter of selectedFilters) {
+					console.log('coach');
+					console.log(filter);
 					if (coach.areas.includes(filter)) {
 						return true;
 					}

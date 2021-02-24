@@ -2,13 +2,15 @@ import mutations from './mutations';
 import actions from './actions';
 import getters from './getters';
 
+import shortid from 'shortid';
+
 export default {
   namespaced: true,
   state() {
     return {
       coaches: [
         {
-          id: 'c1',
+          id: shortid.generate(),
           firstName: 'Maximilian',
           lastName: 'Schwarzmüller',
           areas: ['frontend', 'backend', 'career'],
@@ -17,7 +19,7 @@ export default {
           hourlyRate: 30
         },
         {
-          id: 'c2',
+          id: shortid.generate(),
           firstName: 'Julie',
           lastName: 'Jones',
           areas: ['frontend', 'career'],

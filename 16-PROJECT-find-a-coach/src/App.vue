@@ -1,6 +1,6 @@
 <template>
 	<TheHeader />
-	<router-view></router-view>
+	<RouterView />
 </template>
 
 <script>
@@ -14,23 +14,24 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fugaz+One&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
 :root {
 	--purple-1: hsl(250, 78%, 75%);
 	--purple-2: hsl(250, 26%, 50%);
 	--purple-3: hsl(250, 26%, 30%);
+	--purple-4: hsl(250, 27%, 15%);
 	--pink-1: #fd98d0;
-	--pink-2: #edd2ff;
+	--pink-2: #f0e6fd;
 	--blue-light-1: #b8cdf8;
 	--green-light-1: #95f2d9;
 	--gray-1: #41463d;
-	--gray-2: #5b5b5b;
+	--gray-2: #6b6b6b;
 	--white-1: #fff;
 	--white-2: #f4f9f9;
 
-	--font-primary: 'Noto Sans JP', sans-serif;
+	--font-primary: 'Noto Sans', sans-serif;
 	--font-display: 'Fugaz One', cursive;
 
 	--max-width: 144rem;
@@ -56,6 +57,7 @@ html {
 
 body {
 	font-size: 1.6rem;
+	color: var(--purple-4);
 }
 
 section {
@@ -85,5 +87,11 @@ button {
 
 a {
 	text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+	html {
+		/* font-size: 56.25%; */
+	}
 }
 </style>

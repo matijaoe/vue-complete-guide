@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 .card {
-	padding: 1.6rem 2rem;
+	padding: 2rem;
 	background: var(--white-1);
 
 	border: 0.3rem solid var(--gray-2);
@@ -30,4 +30,5 @@ export default {
 .shadow {
 	box-shadow: 0.8rem 0.8rem var(--gray-2);
 }
+
 </style>

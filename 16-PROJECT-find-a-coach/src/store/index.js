@@ -1,7 +1,8 @@
 import { createStore } from 'vuex';
-
 import coachesModule from './modules/coaches/index';
 import requestsModule from './modules/requests/index';
+
+import shortid from 'shortid';
 
 const store = createStore({
   modules: {
@@ -9,9 +10,16 @@ const store = createStore({
     requests: requestsModule
   },
   state() {
-    return {};
+    return {
+      userId: shortid.generate()
+    };
   },
-  mutations: {}
+  mutations: {},
+  getters: {
+    userId(state) {
+      return state.userId;
+    }
+  }
 });
 
 export default store;
