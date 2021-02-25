@@ -63,6 +63,8 @@ export default {
 <style scoped>
 h2 {
 	margin-bottom: 1rem;
+	font-family: var(--font-display);
+	font-weight: normal;
 }
 
 .filters {

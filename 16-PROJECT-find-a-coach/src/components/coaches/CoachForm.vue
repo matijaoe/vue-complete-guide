@@ -78,7 +78,9 @@
 			</div>
 			<p v-if="!areas.isValid">At least one area must be selected.</p>
 		</div>
-		<p v-if="!formIsValid">Please fix the above errors and submit again</p>
+		<p v-if="!formIsValid" class="errors">
+			Please fix the above errors and submit again
+		</p>
 		<base-button class="submit-btn">Register</base-button>
 	</form>
 </template>
@@ -191,7 +193,8 @@ textarea {
 	width: 100%;
 	border: 0.2rem solid #ccc;
 	font: inherit;
-	padding: 0.2em;
+	padding: 0.2em 0.4em;
+	border-radius: 0.8rem;
 }
 
 input:focus,
@@ -221,6 +224,11 @@ h3 {
 .invalid input,
 .invalid textarea {
 	border-color: #d13b3b;
+}
+
+.errors {
+	color: #d13b3b;
+	font-weight: bold;
 }
 
 .invalid input:focus,

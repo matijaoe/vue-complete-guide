@@ -63,6 +63,8 @@ li {
 h3 {
 	font-size: 2.4rem;
 	color: var(--purple-2);
+	font-family: var(--font-display);
+	font-weight: normal;
 }
 
 h4 {

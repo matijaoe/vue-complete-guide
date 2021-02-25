@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<section class="row">
 		<base-card mode="shadow">
 			<h2>Register as a coach now!</h2>
 			<CoachForm @save-data="saveData" />

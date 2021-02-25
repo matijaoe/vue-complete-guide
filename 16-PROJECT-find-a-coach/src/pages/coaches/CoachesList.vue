@@ -98,5 +98,13 @@ ul {
 .controls {
 	display: flex;
 	justify-content: space-between;
+	margin-top: 0.8rem;
+}
+
+@media only screen and (max-width: 600px) {
+	ul {
+		grid-template-columns: 1fr;
+		gap: 2.4rem;
+	}
 }
 </style>

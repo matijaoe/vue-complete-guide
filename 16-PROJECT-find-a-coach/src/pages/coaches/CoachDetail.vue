@@ -1,32 +1,34 @@
 <template>
-	<section>
-		<base-card>
-			<h2>{{ fullName }}</h2>
-			<h3>${{ rate }}/hour</h3>
-		</base-card>
-	</section>
-	<section>
-		<base-card>
-			<header>
-				<h2>Interested? Reach out now!</h2>
-				<base-button link :to="contactLink">Contact</base-button>
-			</header>
-			<RouterView />
-		</base-card>
-	</section>
-	<section>
-		<base-card>
-			<div class="badges">
-				<base-badge
-					v-for="area in areas"
-					:key="area"
-					:type="area"
-					:title="area"
-				></base-badge>
-			</div>
-			<p>{{ description }}</p>
-		</base-card>
-	</section>
+	<div class="row">
+		<section>
+			<base-card>
+				<h2>{{ fullName }}</h2>
+				<h3>${{ rate }}/hour</h3>
+			</base-card>
+		</section>
+		<section>
+			<base-card>
+				<header>
+					<h2>Interested? Reach out now!</h2>
+					<base-button link :to="contactLink">Contact</base-button>
+				</header>
+				<RouterView />
+			</base-card>
+		</section>
+		<section>
+			<base-card>
+				<div class="badges">
+					<base-badge
+						v-for="area in areas"
+						:key="area"
+						:type="area"
+						:title="area"
+					></base-badge>
+				</div>
+				<p>{{ description }}</p>
+			</base-card>
+		</section>
+	</div>
 </template>
 
 <script>
@@ -66,6 +68,10 @@ export default {
 </script>
 
 <style scoped>
+section:first-of-type {
+	margin-top: 3.2rem;
+}
+
 .badges {
 	margin-bottom: 1.6rem;
 }
@@ -77,5 +83,4 @@ h2 {
 h3 {
 	margin-bottom: 0.5em;
 }
-
 </style>

@@ -62,7 +62,6 @@ body {
 
 section {
 	width: 100%;
-	padding: 0 1.6rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	display: flex;

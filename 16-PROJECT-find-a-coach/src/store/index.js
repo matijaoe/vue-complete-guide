@@ -1,7 +1,6 @@
 import { createStore } from 'vuex';
 import coachesModule from './modules/coaches/index';
 import requestsModule from './modules/requests/index';
-
 import shortid from 'shortid';
 
 const store = createStore({

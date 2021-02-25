@@ -1,32 +1,48 @@
 <template>
-	<header>
-		<nav class="row">
-			<h1><router-link to="/">Find a Coach</router-link></h1>
-			<ul>
-				<li>
-					<router-link to="/coaches">Coaches</router-link>
-				</li>
-				<li>
-					<router-link to="/requests">Requests</router-link>
-				</li>
-			</ul>
-		</nav>
-	</header>
+	<div class="row">
+		<header>
+			<nav>
+				<h1>
+					<router-link to="/" id="brand-title">
+						Find a Coach
+					</router-link>
+				</h1>
+				<ul>
+					<li>
+						<router-link to="/coaches">Coaches</router-link>
+					</li>
+					<li>
+						<router-link to="/requests">Requests</router-link>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</div>
 </template>
 
 <style scoped>
 header {
-	width: 100%;
-	background: var(--purple-2);
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	color: var(--white-2);
+
+	max-width: var(--max-width);
+	margin-top: 1.2rem;
+}
+
+header nav {
+	background: var(--purple-2);
+	box-shadow: 0.8rem 0.8rem var(--purple-1);
+	border-radius: 1.2rem;
+	padding: 0.8rem;
+
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 header a {
 	display: inline-block;
-	padding: 0.65em 1.2em;
+	padding: 0.5em 1em;
 	border-top: 0.3rem dotted transparent;
 	font-family: var(--font-display);
 	font-weight: normal;
@@ -47,23 +63,14 @@ a.router-link-active {
 
 h1 {
 	font-family: var(--font-display);
-}
-
-h1 a {
-	margin: 0;
+	font-size: 2rem;
 }
 
 h1 a:hover,
 h1 a:active,
 h1 a.router-link-active {
 	border-color: transparent;
-}
-
-header nav {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	color: inherit;
 }
 
 header ul {
@@ -74,6 +81,16 @@ header ul {
 }
 
 li {
-	margin: 0 0.5rem;
+	margin: 0 0.4rem;
+}
+
+@media only screen and (max-width: 600px) {
+	header a {
+		padding: 0.5em;
+		font-size: 0.9em;
+	}
+	li {
+		margin: 0 0.2rem;
+	}
 }
 </style>
