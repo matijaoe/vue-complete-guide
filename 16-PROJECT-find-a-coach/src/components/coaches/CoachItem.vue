@@ -2,7 +2,7 @@
 	<base-card mode="shadow">
 		<li>
 			<h3>{{ fullName }}</h3>
-			<h4>${{ rate }}/hour</h4>
+			<base-price :rate="rate"></base-price>
 			<div>
 				<base-badge
 					v-for="area in areas"
@@ -65,11 +65,6 @@ h3 {
 	color: var(--purple-2);
 	font-family: var(--font-display);
 	font-weight: normal;
-}
-
-h4 {
-	font-size: 1.6rem;
-	margin-bottom: 0.4rem;
 }
 
 .actions {

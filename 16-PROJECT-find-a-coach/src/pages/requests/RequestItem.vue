@@ -4,7 +4,7 @@
 			<a :href="emailLink">{{ email }}</a>
 		</div>
 		<div>
-			<ion-icon name="skull-outline"></ion-icon>
+			<ion-icon name="checkmark-done-outline"></ion-icon>
 			<p>{{ message }}</p>
 		</div>
 	</li>

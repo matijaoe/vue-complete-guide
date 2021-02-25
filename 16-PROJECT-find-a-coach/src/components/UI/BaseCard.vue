@@ -37,5 +37,6 @@ export default {
 	background: transparent;
 	padding: 0 2rem;
 	max-width: 100%;
+	box-shadow: none;
 }
 </style>

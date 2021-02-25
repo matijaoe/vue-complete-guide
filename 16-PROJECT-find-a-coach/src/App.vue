@@ -20,8 +20,8 @@ export default {
 :root {
 	--purple-1: hsl(250, 78%, 75%);
 	--purple-2: hsl(250, 26%, 50%);
-	--purple-3: hsl(250, 26%, 30%);
-	--purple-4: hsl(250, 27%, 15%);
+	--purple-3: hsl(250, 27%, 33%);
+	--purple-4: hsl(249, 26%, 21%);
 	--pink-1: #fd98d0;
 	--pink-2: #f0e6fd;
 	--blue-light-1: #b8cdf8;

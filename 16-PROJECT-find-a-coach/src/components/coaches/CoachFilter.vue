@@ -69,12 +69,18 @@ h2 {
 
 .filters {
 	display: flex;
-	gap: 2.4rem;
+	gap: 1.6rem;
 }
 
 .filter-option {
-	padding: 0.5em;
 	font-size: 1.8rem;
+	padding: 0.75em;
+	border-radius: 0.8rem;
+}
+
+.filter-option:hover {
+	background-color: var(--pink-2);
+	color: var(--purple-3);
 }
 
 .filter-option label {
@@ -96,7 +102,6 @@ input {
 	}
 
 	.filter-option {
-		padding: 0.25em;
 		font-size: 1.6rem;
 	}
 }
