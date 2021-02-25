@@ -15,7 +15,7 @@ export default {
 		saveData(data) {
 			this.$store.dispatch('coaches/registerCoach', data);
 			// better than push bcs we cant go back to the page
-			this.$router.replace('/coaches'); 
+			this.$router.replace('/coaches');
 		},
 	},
 };
@@ -26,5 +26,9 @@ export default {
 h2 {
 	margin-bottom: 1.6rem;
 	color: var(--purple-2);
+}
+
+section {
+	margin-top: 3.2rem;
 }
 </style>

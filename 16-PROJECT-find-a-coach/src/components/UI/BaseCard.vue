@@ -31,4 +31,10 @@ export default {
 	box-shadow: 0.8rem 0.8rem var(--gray-2);
 }
 
+.flat {
+	border: none;
+	background: transparent;
+	padding: 0 2rem;
+	max-width: 100%;
+}
 </style>

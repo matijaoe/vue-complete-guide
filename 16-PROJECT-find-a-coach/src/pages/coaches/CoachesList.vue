@@ -3,12 +3,15 @@
 		<section>
 			<base-card mode="flat">
 				<div class="controls">
-					<base-button mode="flat">
+					<base-button mode="flat" id="refresh">
 						Refresh
-						<box-icon name="refresh"></box-icon>
 					</base-button>
-					<base-button v-if="!isCoach" link :to="{ name: 'register' }"
-						>Register as coach
+					<base-button
+						v-if="!isCoach"
+						link
+						:to="{ name: 'register' }"
+					>
+						Register as coach
 					</base-button>
 				</div>
 			</base-card>
@@ -64,8 +67,6 @@ export default {
 
 			return coaches.filter((coach) => {
 				for (const filter of selectedFilters) {
-					console.log('coach');
-					console.log(filter);
 					if (coach.areas.includes(filter)) {
 						return true;
 					}
