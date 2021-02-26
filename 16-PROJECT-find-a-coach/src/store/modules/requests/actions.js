@@ -6,7 +6,8 @@ export default {
       id: shortid.generate(),
       coachId: payload.coachId,
       userEmail: payload.email,
-      message: payload.message
+      message: payload.message,
+      timestamp: payload.timestamp
     };
     context.commit('addRequest', newRequest);
   }

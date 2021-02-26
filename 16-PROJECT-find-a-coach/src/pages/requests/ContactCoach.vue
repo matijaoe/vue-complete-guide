@@ -50,9 +50,10 @@ export default {
 			const coachId = this.$route.params.id;
 
 			this.$store.dispatch('requests/contactCoach', {
-				coachId: coachId, // moze i preko propsa
+				coachId, // moze i preko propsa
 				email: this.email,
 				message: this.message,
+				timestamp: Date.now(),
 			});
 
 			this.$router.replace({

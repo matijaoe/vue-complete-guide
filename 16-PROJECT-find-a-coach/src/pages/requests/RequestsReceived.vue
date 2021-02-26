@@ -10,6 +10,7 @@
 					:key="req.id"
 					:email="req.userEmail"
 					:message="req.message"
+					:timestamp="req.timestamp"
 				/>
 			</ul>
 			<h3 v-else>You haven't receieved any requests yet.</h3>
@@ -46,7 +47,7 @@ ul {
 	list-style: none;
 	max-width: 40rem;
 	margin: 0 auto;
-	
+
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;

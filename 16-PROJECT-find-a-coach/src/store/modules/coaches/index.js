@@ -20,12 +20,12 @@ export default {
         },
         {
           id: shortid.generate(),
-          firstName: 'Julie',
-          lastName: 'Jones',
+          firstName: 'Vitalik',
+          lastName: 'Buterin',
           areas: ['frontend', 'career'],
           description:
-            'I am Julie and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.',
-          hourlyRate: 30
+            'I am Vitalik and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.',
+          hourlyRate: 69
         }
       ]
     };
