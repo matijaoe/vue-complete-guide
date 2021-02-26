@@ -156,7 +156,6 @@ export default {
 			this.$emit('save-data', formData);
 		},
 		clearValidity(input) {
-			console.log(input);
 			input.isValid = true;
 		},
 		isEmpty(value) {
