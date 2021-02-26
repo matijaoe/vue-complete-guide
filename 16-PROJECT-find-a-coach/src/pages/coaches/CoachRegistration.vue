@@ -8,7 +8,10 @@
 </template>
 
 <script>
+// todo -> add error handling and loading spinner
+
 import CoachForm from '../../components/coaches/CoachForm';
+
 export default {
 	components: { CoachForm },
 	methods: {

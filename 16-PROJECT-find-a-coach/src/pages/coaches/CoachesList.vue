@@ -1,4 +1,7 @@
 <template>
+	<base-dialog :show="!!error" title="An error occured" @close="handleError">
+		<p>{{ error }}</p>
+	</base-dialog>
 	<div class="row">
 		<section>
 			<base-card mode="flat">
@@ -47,6 +50,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
+			error: null,
 			activeFilters: {
 				frontend: true,
 				backend: true,
@@ -88,8 +92,15 @@ export default {
 		},
 		async loadCoaches() {
 			this.isLoading = true;
-			await this.$store.dispatch('coaches/loadCoaches');
+			try {
+				await this.$store.dispatch('coaches/loadCoaches');
+			} catch (err) {
+				this.error = err.message || 'Something went wrong';
+			}
 			this.isLoading = false;
+		},
+		handleError() {
+			this.error = null;
 		},
 	},
 	created() {

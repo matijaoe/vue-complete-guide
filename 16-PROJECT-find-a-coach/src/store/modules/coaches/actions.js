@@ -20,7 +20,6 @@ export default {
         ...coachData,
         id: userId
       });
-
     } catch (error) {
       console.log(error);
     }
@@ -29,9 +28,11 @@ export default {
     const databaseUrl = context.rootGetters.databaseUrl;
 
     try {
-      const { data: coachesData } = await axios.get(
-        `${databaseUrl}/coaches.jso`
-      );
+      const resData = await axios.get(`${databaseUrl}/coaches.json`);
+
+      const { data: coachesData } = resData;
+
+      console.log(resData);
 
       const coaches = [];
       for (const key in coachesData) {
@@ -47,8 +48,10 @@ export default {
 
         context.commit('setCoaches', coaches);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
+      const error = new Error(err.message || 'Failed to fetch');
+      throw error;
     }
   }
 };
