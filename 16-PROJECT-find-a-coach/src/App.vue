@@ -1,6 +1,10 @@
 <template>
 	<TheHeader />
-	<RouterView />
+	<router-view v-slot="{ Component }">
+		<transition name="route" mode="out-in">
+			<component :is="Component"></component>
+		</transition>
+	</router-view>
 </template>
 
 <script>
@@ -91,6 +95,21 @@ button {
 
 a {
 	text-decoration: none;
+}
+
+.route-enter-from {
+	opacity: 0;
+	transform: translateY(-30px);
+}
+.route-leave-to {
+	opacity: 0;
+	transform: translateY(30px);
+}
+.route-enter-active {
+	transition: all 250ms ease-out;
+}
+.route-leave-active {
+	transition: all 250ms ease-in;
 }
 
 @media only screen and (max-width: 600px) {

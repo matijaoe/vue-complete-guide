@@ -1,21 +1,23 @@
 <template>
 	<teleport to="body">
 		<div v-if="show" @click="tryClose" class="backdrop"></div>
-		<dialog open v-if="show">
-			<header>
-				<slot name="header">
-					<h2>{{ title }}</h2>
-				</slot>
-			</header>
-			<section>
-				<slot></slot>
-			</section>
-			<menu v-if="!fixed">
-				<slot name="actions">
-					<base-button @click="tryClose">Close</base-button>
-				</slot>
-			</menu>
-		</dialog>
+		<transition name="dialog">
+			<dialog open v-if="show">
+				<header>
+					<slot name="header">
+						<h2>{{ title }}</h2>
+					</slot>
+				</header>
+				<section>
+					<slot></slot>
+				</section>
+				<menu v-if="!fixed">
+					<slot name="actions">
+						<base-button @click="tryClose">Close</base-button>
+					</slot>
+				</menu>
+			</dialog>
+		</transition>
 	</teleport>
 </template>
 
@@ -63,12 +65,11 @@ export default {
 dialog {
 	position: fixed;
 	top: 20vh;
-	left: 50%;
-	transform: translateX(-50%);
+	margin: 0 auto;
+	max-width: 50rem;
 	width: 90%;
 	z-index: 100;
 	overflow: hidden;
-	max-width: 50rem;
 
 	border-radius: 1.2rem;
 	border: none;
@@ -96,5 +97,23 @@ menu {
 	display: flex;
 	justify-content: flex-end;
 	margin: 0;
+}
+
+.dialog-enter-from {
+	opacity: 0;
+	transform: scale(0.85) rotate(300deg);
+}
+
+.dialog-leave-to {
+	opacity: 0;
+	transform: scale(0.85) rotate(-180deg);
+}
+
+.dialog-enter-active {
+	transition: all 350ms ease-out;
+}
+
+.dialog-leave-active {
+	transition: all 250ms ease-in;
 }
 </style>

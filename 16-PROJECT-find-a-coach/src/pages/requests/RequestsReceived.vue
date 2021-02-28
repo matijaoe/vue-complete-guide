@@ -1,28 +1,36 @@
 <template>
-	<base-dialog :show="!!error" title="An error occured" @close="handleError">
-		<p>{{ error }}</p>
-	</base-dialog>
-	<section class="row">
-		<div class="controls">
-			<base-button mode="flat" @click="loadRequests">Refresh</base-button>
-		</div>
-		<base-card>
-			<header>
-				<h2>Requests Received</h2>
-			</header>
-			<base-spinner v-if="isLoading"></base-spinner>
-			<ul v-else-if="hasRequests && !isLoading">
-				<RequestItem
-					v-for="req in receivedRequests"
-					:key="req.id"
-					:email="req.userEmail"
-					:message="req.message"
-					:timestamp="req.timestamp"
-				/>
-			</ul>
-			<h3 v-else>You haven't receieved any requests yet.</h3>
-		</base-card>
-	</section>
+	<div>
+		<base-dialog
+			:show="!!error"
+			title="An error occured"
+			@close="handleError"
+		>
+			<p>{{ error }}</p>
+		</base-dialog>
+		<section class="row">
+			<div class="controls">
+				<base-button mode="flat" @click="loadRequests"
+					>Refresh</base-button
+				>
+			</div>
+			<base-card>
+				<header>
+					<h2>Requests Received</h2>
+				</header>
+				<base-spinner v-if="isLoading"></base-spinner>
+				<ul v-else-if="hasRequests && !isLoading">
+					<RequestItem
+						v-for="req in receivedRequests"
+						:key="req.id"
+						:email="req.userEmail"
+						:message="req.message"
+						:timestamp="req.timestamp"
+					/>
+				</ul>
+				<h3 v-else>You haven't receieved any requests yet.</h3>
+			</base-card>
+		</section>
+	</div>
 </template>
 
 <script>
