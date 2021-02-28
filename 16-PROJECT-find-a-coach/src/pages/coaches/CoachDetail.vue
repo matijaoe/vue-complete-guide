@@ -10,9 +10,13 @@
 			<base-card>
 				<header>
 					<h2>Interested? Reach out now!</h2>
-					<base-button link :to="contactLink">Contact</base-button>
+					<base-button link :to="contactLink"> Contact </base-button>
 				</header>
-				<RouterView />
+				<router-view v-slot="{ Component }">
+					<transition name="contact" mode="out-in">
+						<component :is="Component"></component>
+					</transition>
+				</router-view>
 			</base-card>
 		</section>
 		<section>
@@ -36,6 +40,7 @@ export default {
 	props: ['id'],
 	data() {
 		return {
+			contactBtnShown: true,
 			selectedCoach: null,
 		};
 	},
@@ -82,5 +87,15 @@ h2 {
 
 h3 {
 	margin-bottom: 0.5em;
+}
+
+.contact-enter-from {
+	opacity: 0;
+	transform: scaleY(0.2);
+}
+
+.contact-enter-active {
+	transition: all 350ms ease-out;
+	transform-origin: top;
 }
 </style>
