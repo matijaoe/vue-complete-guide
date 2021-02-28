@@ -74,7 +74,7 @@ export default {
 
 <style scoped>
 .form-control {
-	margin: 1.6rem 0;
+	margin: 2rem 0;
 }
 
 label {

@@ -101,16 +101,16 @@ menu {
 
 .dialog-enter-from {
 	opacity: 0;
-	transform: scale(0.85) rotate(300deg);
+	transform: scale(0.8) translateY(-40px);
 }
 
 .dialog-leave-to {
 	opacity: 0;
-	transform: scale(0.85) rotate(-180deg);
+	transform: scale(0.8) translateY(40px);
 }
 
 .dialog-enter-active {
-	transition: all 350ms ease-out;
+	transition: all 250ms;
 }
 
 .dialog-leave-active {

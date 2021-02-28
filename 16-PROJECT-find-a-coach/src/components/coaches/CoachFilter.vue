@@ -1,5 +1,5 @@
 <template>
-	<base-card mode="full">
+	<base-card mode="full" color="color">
 		<h2>Find your coach</h2>
 		<div class="filters">
 			<span class="filter-option">

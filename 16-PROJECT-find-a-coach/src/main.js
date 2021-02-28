@@ -15,7 +15,6 @@ import BaseBadge from './components/UI/BaseBadge';
 import BasePrice from './components/UI/BasePrice';
 import BaseSpinner from './components/UI/BaseSpinner';
 import BaseDialog from './components/UI/BaseDialog';
-
 const app = createApp(App);
 
 app.use(router);

@@ -1,12 +1,12 @@
 <template>
-	<div :class="['card', mode]">
+	<div :class="['card', mode, color]">
 		<slot></slot>
 	</div>
 </template>
 
 <script>
 export default {
-	props: ['mode'],
+	props: ['mode', 'color'],
 };
 </script>
 
@@ -38,5 +38,13 @@ export default {
 	padding: 0 2rem;
 	max-width: 100%;
 	box-shadow: none;
+}
+
+.shadow.color {
+	box-shadow: 0.8rem 0.8rem var(--purple-1);
+}
+
+.color {
+	border-color: var(--purple-2);
 }
 </style>

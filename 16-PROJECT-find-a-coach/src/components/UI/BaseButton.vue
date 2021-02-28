@@ -67,11 +67,15 @@ button:active {
 }
 
 .flat:hover,
-.flat:active,
+.flat:active {
+	background-color: var(--pink-2);
+	color: var(--purple-3);
+	border-color: transparent;
+}
+
 .outline:hover,
 .outline:active {
 	background-color: var(--pink-2);
 	color: var(--purple-3);
-	border-color: transparent;
 }
 </style>

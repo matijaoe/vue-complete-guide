@@ -13,7 +13,7 @@
 					>Refresh</base-button
 				>
 			</div>
-			<base-card>
+			<base-card color="color">
 				<header>
 					<h2>Requests Received</h2>
 				</header>

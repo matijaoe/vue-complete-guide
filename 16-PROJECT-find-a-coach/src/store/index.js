@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import coachesModule from './modules/coaches/index';
 import requestsModule from './modules/requests/index';
-// import shortid from 'shortid';
+import shortid from 'shortid';
 
 const store = createStore({
   modules: {
@@ -10,9 +10,9 @@ const store = createStore({
   },
   state() {
     return {
-    //   userId: shortid.generate(),
-      //   userId: '-iKyHp7PB', // conte
-        userId: 'UssYdJQPk', // mamic
+      userId: shortid.generate(),
+        // userId: '-iKyHp7PB', // conte
+    //   userId: 'UssYdJQPk', // mamic
       databaseUrl: 'https://find-a-coach-3f555-default-rtdb.firebaseio.com'
     };
   },
