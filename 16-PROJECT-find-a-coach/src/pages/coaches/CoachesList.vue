@@ -6,7 +6,7 @@
 		<section>
 			<base-card mode="flat">
 				<div class="controls">
-					<base-button mode="flat" @click="loadCoaches"
+					<base-button mode="flat" @click="loadCoaches(true)"
 						>Refresh</base-button
 					>
 					<base-button
@@ -90,10 +90,12 @@ export default {
 		setFilters(updatedFilters) {
 			this.activeFilters = updatedFilters;
 		},
-		async loadCoaches() {
+		async loadCoaches(refresh = false) {
 			this.isLoading = true;
 			try {
-				await this.$store.dispatch('coaches/loadCoaches');
+				await this.$store.dispatch('coaches/loadCoaches', {
+					forceRefresh: refresh,
+				});
 			} catch (err) {
 				this.error = err.message || 'Something went wrong';
 			}

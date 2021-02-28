@@ -24,7 +24,10 @@ export default {
       console.log(error);
     }
   },
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    // used data already stored if its less than a minute old
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) return;
+
     const databaseUrl = context.rootGetters.databaseUrl;
 
     try {
@@ -47,6 +50,7 @@ export default {
         coaches.push(coach);
 
         context.commit('setCoaches', coaches);
+        context.commit('setFetchTimestamp');
       }
     } catch (err) {
       console.log(err);

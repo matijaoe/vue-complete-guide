@@ -3,6 +3,9 @@
 		<p>{{ error }}</p>
 	</base-dialog>
 	<section class="row">
+		<div class="controls">
+			<base-button mode="flat" @click="loadRequests">Refresh</base-button>
+		</div>
 		<base-card>
 			<header>
 				<h2>Requests Received</h2>
@@ -91,5 +94,10 @@ h3 {
 	text-align: center;
 	font-size: 1.8rem;
 	margin-bottom: 0.8rem;
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
 }
 </style>

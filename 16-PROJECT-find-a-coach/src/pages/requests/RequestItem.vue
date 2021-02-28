@@ -6,7 +6,7 @@
 		</header>
 		<div>
 			<ion-icon name="checkmark-done-outline"></ion-icon>
-			<p>a{{ message }}</p>
+			<p>{{ message }}</p>
 		</div>
 	</li>
 </template>

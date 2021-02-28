@@ -10,8 +10,8 @@ const store = createStore({
   },
   state() {
     return {
-      userId: shortid.generate(),
-      //   userId: 'eWRhpRV',
+        userId: shortid.generate(),
+    //   userId: '-iKyHp7PB', // conte
       databaseUrl: 'https://find-a-coach-3f555-default-rtdb.firebaseio.com'
     };
   },

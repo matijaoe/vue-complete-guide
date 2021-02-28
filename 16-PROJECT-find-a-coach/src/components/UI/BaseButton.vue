@@ -55,7 +55,7 @@ button:active {
 
 .flat {
 	background-color: transparent;
-	border: none;
+	border-color: transparent;
 	color: var(--purple-2);
 	text-decoration: none;
 }
@@ -72,5 +72,6 @@ button:active {
 .outline:active {
 	background-color: var(--pink-2);
 	color: var(--purple-3);
+	border-color: transparent;
 }
 </style>

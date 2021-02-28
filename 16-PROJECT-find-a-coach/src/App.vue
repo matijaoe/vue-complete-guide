@@ -53,10 +53,15 @@ html {
 	font-family: var(--font-primary);
 	font-size: 62.5%;
 	background: var(--white-2);
+	overflow-y: overlay;
 }
 
 body {
 	font-size: 1.6rem;
+	color: var(--purple-4);
+}
+
+p {
 	color: var(--purple-4);
 }
 

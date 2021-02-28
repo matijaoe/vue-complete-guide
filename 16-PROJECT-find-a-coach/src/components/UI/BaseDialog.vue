@@ -57,49 +57,44 @@ export default {
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.75);
 	z-index: 10;
+	backdrop-filter: blur(4px);
 }
 
 dialog {
 	position: fixed;
 	top: 20vh;
-	left: 10%;
-	width: 80%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 90%;
 	z-index: 100;
-	border-radius: 12px;
-	border: none;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-	padding: 0;
-	margin: 0;
 	overflow: hidden;
-	background-color: white;
+	max-width: 50rem;
+
+	border-radius: 1.2rem;
+	border: none;
+	border: 0.3rem solid var(--purple-1);
 }
 
 header {
-	background-color: #3a0061;
-	color: white;
-	width: 100%;
-	padding: 1rem;
+	display: flex;
+	background: var(--purple-2);
+	padding: 1.6rem;
 }
 
 header h2 {
-	margin: 0;
+	color: var(--white-2);
 }
 
 section {
-	padding: 1rem;
+	padding: 1.6rem;
+	margin: 0;
+	margin-top: 1.6rem;
 }
 
 menu {
-	padding: 1rem;
+	padding: 1.6rem;
 	display: flex;
 	justify-content: flex-end;
 	margin: 0;
-}
-
-@media (min-width: 768px) {
-	dialog {
-		left: calc(50% - 20rem);
-		width: 40rem;
-	}
 }
 </style>
