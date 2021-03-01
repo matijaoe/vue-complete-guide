@@ -4,22 +4,27 @@
 			<nav>
 				<h1>
 					<router-link :to="{ name: 'home' }" id="brand-title">
-						Find a Coach
+						Coachr
 					</router-link>
 				</h1>
 				<ul>
 					<li>
-						<router-link :to="{ name: 'coaches' }">
+						<base-button :to="{ name: 'coaches' }" link>
 							Coaches
-						</router-link>
+						</base-button>
 					</li>
 					<li v-if="isLoggedIn">
-						<router-link :to="{ name: 'requests' }">
+						<base-button :to="{ name: 'requests' }" link>
 							Requests
-						</router-link>
+						</base-button>
 					</li>
 					<li v-else>
-						<router-link :to="{ name: 'auth' }">Login</router-link>
+						<base-button :to="{ name: 'auth' }" link>
+							Login
+						</base-button>
+					</li>
+					<li v-if="isLoggedIn">
+						<base-button @click="logout">Logout</base-button>
 					</li>
 				</ul>
 			</nav>
@@ -32,6 +37,11 @@ export default {
 	computed: {
 		isLoggedIn() {
 			return this.$store.getters.isAuthenticated;
+		},
+	},
+	methods: {
+		logout() {
+			this.$store.dispatch('logout');
 		},
 	},
 };
@@ -49,7 +59,7 @@ header nav {
 	background: var(--purple-2);
 	box-shadow: 0.8rem 0.8rem var(--purple-1);
 	border-radius: 1.2rem;
-	padding: 0.8rem;
+	padding: 1.2rem;
 
 	width: 100%;
 	display: flex;
@@ -57,30 +67,27 @@ header nav {
 	align-items: center;
 }
 
-header a {
-	display: inline-block;
-	padding: 0.5em 1em;
-	border-top: 0.3rem dotted transparent;
+h1 {
 	font-family: var(--font-display);
+	font-size: 2rem;
+}
+
+#brand-title {
+	color: var(--white-2);
 	font-weight: normal;
-	margin: 0 0.4rem;
-	transition: all 150ms ease-in-out;
-	color: inherit;
+	padding: 1rem;
 }
 
 a:active,
 a:hover {
 	color: var(--pink-1);
+	background-color: var(--purple-3);
+	border-color: var(--purple-3);
 }
 
 a.router-link-active {
-	border-color: var(--pink-1);
 	color: var(--pink-1);
-}
-
-h1 {
-	font-family: var(--font-display);
-	font-size: 2rem;
+	background-color: var(--purple-3);
 }
 
 h1 a:hover,
@@ -88,6 +95,7 @@ h1 a:active,
 h1 a.router-link-active {
 	border-color: transparent;
 	color: inherit;
+	background: none;
 }
 
 header ul {
@@ -95,14 +103,12 @@ header ul {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-li {
-	margin: 0 0.4rem;
+	gap: 0.8rem;
 }
 
 @media only screen and (max-width: 600px) {
-	header a {
+	header a,
+	logout-btn {
 		padding: 0.5em;
 		font-size: 0.9em;
 	}

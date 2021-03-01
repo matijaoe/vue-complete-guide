@@ -43,6 +43,7 @@ a {
 	cursor: pointer;
 	border-radius: 0.8rem;
 	display: inline-block;
+	transition: all 200ms ease;
 }
 
 a:hover,

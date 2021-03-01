@@ -27,7 +27,7 @@ export default {
 	--purple-3: hsl(250, 27%, 33%);
 	--purple-4: hsl(249, 26%, 21%);
 	--pink-1: #fd98d0;
-	--pink-2: #f0e6fd;
+	--pink-2: #ece1fc;
 	--blue-light-1: #b8cdf8;
 	--green-light-1: #95f2d9;
 	--gray-1: #41463d;

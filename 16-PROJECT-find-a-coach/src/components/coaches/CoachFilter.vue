@@ -97,12 +97,19 @@ input {
 }
 
 @media only screen and (max-width: 600px) {
-	html {
-		/* font-size: 56.25%; */
-	}
-
 	.filter-option {
 		font-size: 1.6rem;
+		padding: 0.4em;
+	}
+
+	.filter-option label {
+		margin-left: 0.8rem;
+		user-select: none;
+	}
+}
+@media only screen and (max-width: 400px) {
+	input {
+		transform: scale(1.2);
 	}
 }
 </style>
