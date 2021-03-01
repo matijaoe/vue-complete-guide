@@ -98,7 +98,7 @@ export default {
 				return;
 			}
 
-			const userInfo = {
+			const actionPayload = {
 				email: this.email,
 				password: this.password,
 			};
@@ -107,16 +107,22 @@ export default {
 
 			// send http request
 			try {
-				if (this.mode === 'login') {
-					//todo
-				} else {
-					await this.$store.dispatch('signup', userInfo);
-				}
+				await this.$store.dispatch(this.mode, actionPayload);
 			} catch (err) {
 				console.log(err);
 
 				if (err.message === 'EMAIL_EXISTS') {
 					this.error = 'Email already in use.';
+				} else if (err.message === 'TOO_MANY_ATTEMPTS_TRY_LATER') {
+					this.error =
+						'We have blocked all requests from this device due to unusual activity. Try again later.';
+				} else if (err.message === 'EMAIL_NOT_FOUND') {
+					this.error = 'Email not found.';
+				} else if (err.message === 'INVALID_PASSWORD') {
+					this.error = 'Invalid password.';
+				} else if (err.message === 'USER_DISABLED') {
+					this.error =
+						'Account has been disabled by an administrator.';
 				} else {
 					this.error = 'Failed to authenticate, try again later.';
 				}

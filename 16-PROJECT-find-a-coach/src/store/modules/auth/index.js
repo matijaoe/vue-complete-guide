@@ -8,7 +8,8 @@ export default {
       //   userId: 'UssYdJQPk', // mamic,
       userId: null,
       token: null,
-      tokenExpiration: null
+      tokenExpiration: null,
+      API_KEY: 'AIzaSyDjWvr2HzvuRpm-7H7FN53SjqaZZ4yKvcc'
     };
   },
   mutations,
