@@ -30,10 +30,20 @@ export default {
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
     const databaseUrl = context.rootGetters.databaseUrl;
+   
+	const token = context.rootGetters.token;
+    const options = {};
+
+    if (token) {
+      options.params = {
+        auth: token
+      };
+    }
 
     try {
       const { data: responseData } = await axios.get(
-        `${databaseUrl}/requests/${coachId}.json`
+        `${databaseUrl}/requests/${coachId}.json`,
+        options
       );
 
       const requests = [];

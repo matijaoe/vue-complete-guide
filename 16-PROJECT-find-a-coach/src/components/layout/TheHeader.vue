@@ -3,22 +3,39 @@
 		<header>
 			<nav>
 				<h1>
-					<router-link to="/" id="brand-title">
+					<router-link :to="{ name: 'home' }" id="brand-title">
 						Find a Coach
 					</router-link>
 				</h1>
 				<ul>
 					<li>
-						<router-link to="/coaches">Coaches</router-link>
+						<router-link :to="{ name: 'coaches' }">
+							Coaches
+						</router-link>
 					</li>
-					<li>
-						<router-link to="/requests">Requests</router-link>
+					<li v-if="isLoggedIn">
+						<router-link :to="{ name: 'requests' }">
+							Requests
+						</router-link>
+					</li>
+					<li v-else>
+						<router-link :to="{ name: 'auth' }">Login</router-link>
 					</li>
 				</ul>
 			</nav>
 		</header>
 	</div>
 </template>
+
+<script>
+export default {
+	computed: {
+		isLoggedIn() {
+			return this.$store.getters.isAuthenticated;
+		},
+	},
+};
+</script>
 
 <style scoped>
 header {

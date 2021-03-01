@@ -105,7 +105,6 @@ export default {
 
 			this.isLoading = true;
 
-			// send http request
 			try {
 				await this.$store.dispatch(this.mode, actionPayload);
 			} catch (err) {

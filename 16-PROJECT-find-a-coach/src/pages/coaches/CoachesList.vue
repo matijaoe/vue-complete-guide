@@ -15,7 +15,14 @@
 							>Refresh</base-button
 						>
 						<base-button
-							v-if="!isCoach"
+							v-if="!isLoggedIn"
+							:to="{ name: 'auth' }"
+							link
+						>
+							Login
+						</base-button>
+						<base-button
+							v-if="isLoggedIn && !isCoach && !isLoading"
 							link
 							:to="{ name: 'register' }"
 						>
@@ -65,6 +72,9 @@ export default {
 		};
 	},
 	computed: {
+		isLoggedIn() {
+			return this.$store.getters.isAuthenticated;
+		},
 		isCoach() {
 			return this.$store.getters['coaches/isCoach'];
 		},

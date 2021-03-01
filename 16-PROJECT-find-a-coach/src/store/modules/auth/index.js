@@ -5,7 +5,6 @@ import getters from './getters';
 export default {
   state() {
     return {
-      //   userId: 'UssYdJQPk', // mamic,
       userId: null,
       token: null,
       tokenExpiration: null,

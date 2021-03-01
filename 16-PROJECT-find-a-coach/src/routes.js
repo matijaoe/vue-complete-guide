@@ -40,6 +40,7 @@ const routes = [
   },
   {
     path: '/auth',
+    name: 'auth',
     component: UserAuth
   },
   {
