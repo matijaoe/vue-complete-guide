@@ -1,26 +1,21 @@
 import { createStore } from 'vuex';
 import coachesModule from './modules/coaches/index';
 import requestsModule from './modules/requests/index';
-import shortid from 'shortid';
+import authModule from './modules/auth/index';
 
 const store = createStore({
   modules: {
     coaches: coachesModule,
-    requests: requestsModule
+    requests: requestsModule,
+    auth: authModule
   },
   state() {
     return {
-      userId: shortid.generate(),
-        // userId: '-iKyHp7PB', // conte
-    //   userId: 'UssYdJQPk', // mamic
       databaseUrl: 'https://find-a-coach-3f555-default-rtdb.firebaseio.com'
     };
   },
   mutations: {},
   getters: {
-    userId(state) {
-      return state.userId;
-    },
     databaseUrl(state) {
       return state.databaseUrl;
     }

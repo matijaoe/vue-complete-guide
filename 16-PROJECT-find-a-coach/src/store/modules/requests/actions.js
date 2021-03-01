@@ -11,12 +11,10 @@ export default {
     const databaseUrl = context.rootGetters.databaseUrl;
 
     try {
-      const data = await axios.post(
+      const { data: responseData } = await axios.post(
         `${databaseUrl}/requests/${payload.coachId}.json`,
         newRequest
       );
-
-      const responseData = data.data;
 
       // firebase generates id on name property
       newRequest.id = responseData.name;
@@ -34,8 +32,9 @@ export default {
     const databaseUrl = context.rootGetters.databaseUrl;
 
     try {
-      const data = await axios.get(`${databaseUrl}/requests/${coachId}.json`);
-      const responseData = data.data;
+      const { data: responseData } = await axios.get(
+        `${databaseUrl}/requests/${coachId}.json`
+      );
 
       const requests = [];
       for (const key in responseData) {
@@ -51,7 +50,10 @@ export default {
 
       context.commit('setRequests', requests);
     } catch (err) {
-      const error = new Error(err.message || 'Failed to send request.');
+      console.log(err.response);
+      const error = new Error(
+        err.response.data.error || 'Failed to send request.'
+      );
       throw error;
     }
   }

@@ -91,11 +91,9 @@ h3 {
 
 .contact-enter-from {
 	opacity: 0;
-	transform: scaleY(0.2);
 }
 
 .contact-enter-active {
-	transition: all 350ms ease-out;
-	transform-origin: top;
+	transition: all 300s ease-out;
 }
 </style>

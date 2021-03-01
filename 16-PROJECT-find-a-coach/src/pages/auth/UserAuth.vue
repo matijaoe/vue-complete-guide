@@ -1,63 +1,69 @@
 <template>
-	<div class="row">
-		<base-card class="card" mode="shadow" color="color">
-			<form @submit.prevent="submitForm">
-				<div class="form-control">
-					<transition name="title-fade" mode="out-in">
-						<h2 v-if="mode === 'login'">Login</h2>
-						<h2 v-else>Signup</h2>
-					</transition>
-				</div>
-				<div class="form-control">
-					<label for="email">Email</label>
-					<input type="email" id="email" v-model.trim="email" />
-				</div>
-				<div class="form-control">
-					<label for="password">Password</label>
-					<input
-						type="password"
-						id="password"
-						v-model.trim="password"
-					/>
-				</div>
-				<p v-if="!formIsValid">
-					Please enter a valid email and password (must be at least 6
-					characters long
-				</p>
-				<div class="actions">
-					<transition name="btn-fade" mode="out-in">
-						<base-button v-if="mode === 'login'">Login</base-button>
-						<base-button
-							type="button"
-							mode="flat"
-							@click="switchAuthMode"
-							v-else
-							>Login instead</base-button
-						>
-					</transition>
-					<transition name="btn-fade" mode="out-in">
-						<base-button v-if="mode === 'signup'"
-							>Signup</base-button
-						>
-						<base-button
-							type="button"
-							mode="flat"
-							@click="switchAuthMode"
-							v-else
-							>Signup instead</base-button
-						>
-					</transition>
-				</div>
-
-				<!-- <base-button
-						type="button"
-						mode="flat"
-						@click="switchAuthMode"
-						>{{ switchModeButtonCaption }}</base-button
-					>
-					<base-button>{{ submitButtonCaption }}</base-button> -->
-			</form>
-		</base-card>
+	<div>
+		<base-dialog
+			:show="!!error"
+			title="An error occurred"
+			@close="handleError"
+		>
+			{{ error }}
+		</base-dialog>
+		<base-dialog :show="isLoading" title="Authenticating..." fixed>
+			<base-spinner></base-spinner>
+		</base-dialog>
+		<div class="row">
+			<base-card class="card" mode="shadow" color="color">
+				<form @submit.prevent="submitForm">
+					<div class="form-control">
+						<transition name="title-fade" mode="out-in">
+							<h2 v-if="mode === 'login'">Login</h2>
+							<h2 v-else>Signup</h2>
+						</transition>
+					</div>
+					<div class="form-control">
+						<label for="email">Email</label>
+						<input type="email" id="email" v-model.trim="email" />
+					</div>
+					<div class="form-control">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							v-model.trim="password"
+						/>
+					</div>
+					<p v-if="!formIsValid">
+						Please enter a valid email and password (must be at
+						least 6 characters long
+					</p>
+					<div class="actions">
+						<transition name="btn-fade" mode="out-in">
+							<base-button v-if="mode === 'login'"
+								>Login</base-button
+							>
+							<base-button
+								type="button"
+								mode="flat"
+								@click="switchAuthMode"
+								v-else
+								>Login instead</base-button
+							>
+						</transition>
+						<transition name="btn-fade" mode="out-in">
+							<base-button v-if="mode === 'signup'"
+								>Signup</base-button
+							>
+							<base-button
+								type="button"
+								mode="flat"
+								@click="switchAuthMode"
+								v-else
+								>Signup instead</base-button
+							>
+						</transition>
+					</div>
+				</form>
+			</base-card>
+		</div>
 	</div>
 </template>
 
@@ -67,8 +73,10 @@ export default {
 		return {
 			email: '',
 			password: '',
-			formIsValid: false,
+			formIsValid: true,
 			mode: 'login',
+			isLoading: false,
+			error: null,
 		};
 	},
 	computed: {
@@ -80,7 +88,7 @@ export default {
 		},
 	},
 	methods: {
-		submitForm() {
+		async submitForm() {
 			this.formIsValid = true;
 			if (
 				!this.validateEmail(this.email) ||
@@ -89,7 +97,32 @@ export default {
 				this.formIsValid = false;
 				return;
 			}
+
+			const userInfo = {
+				email: this.email,
+				password: this.password,
+			};
+
+			this.isLoading = true;
+
 			// send http request
+			try {
+				if (this.mode === 'login') {
+					//todo
+				} else {
+					await this.$store.dispatch('signup', userInfo);
+				}
+			} catch (err) {
+				console.log(err);
+
+				if (err.message === 'EMAIL_EXISTS') {
+					this.error = 'Email already in use.';
+				} else {
+					this.error = 'Failed to authenticate, try again later.';
+				}
+			}
+
+			this.isLoading = false;
 		},
 		switchAuthMode() {
 			this.mode = this.mode === 'login' ? 'signup' : 'login';
@@ -107,6 +140,9 @@ export default {
 		},
 		isEmpty(value) {
 			return value === '';
+		},
+		handleError() {
+			this.error = null;
 		},
 	},
 };

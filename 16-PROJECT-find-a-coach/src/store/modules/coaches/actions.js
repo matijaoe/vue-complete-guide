@@ -31,11 +31,9 @@ export default {
     const databaseUrl = context.rootGetters.databaseUrl;
 
     try {
-      const resData = await axios.get(`${databaseUrl}/coaches.json`);
-
-      const { data: coachesData } = resData;
-
-      console.log(resData);
+      const { data: coachesData } = await axios.get(
+        `${databaseUrl}/coaches.json`
+      );
 
       const coaches = [];
       for (const key in coachesData) {
@@ -53,8 +51,8 @@ export default {
         context.commit('setFetchTimestamp');
       }
     } catch (err) {
-      console.log(err);
-      const error = new Error(err.message || 'Failed to fetch');
+      console.log(err.response);
+      const error = new Error(err.response.data.error || 'Failed to fetch');
       throw error;
     }
   }
