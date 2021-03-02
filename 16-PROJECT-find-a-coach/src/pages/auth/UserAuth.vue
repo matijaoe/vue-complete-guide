@@ -107,6 +107,16 @@ export default {
 
 			try {
 				await this.$store.dispatch(this.mode, actionPayload);
+
+				// if you click on element that has query, redirect to that route after submit, otherwise to coaches
+				// ie click on 'login to register as coach' redirects to coach registration
+				// http://localhost:8080/auth?redirect=register
+
+				const redirectUrl = `/${
+					this.$route.query.redirect || 'coaches'
+				}`;
+
+				this.$router.replace(redirectUrl);
 			} catch (err) {
 				console.log(err);
 

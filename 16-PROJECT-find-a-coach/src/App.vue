@@ -112,6 +112,19 @@ a {
 	transition: all 250ms ease-in;
 }
 
+body::-webkit-scrollbar {
+	width: 4px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	background: transparent; /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: var(--gray-2); /* color of the scroll thumb */
+	border-radius: 2rem; /* roundness of the scroll thumb */
+}
+
 @media only screen and (max-width: 600px) {
 	html {
 		/* font-size: 56.25%; */

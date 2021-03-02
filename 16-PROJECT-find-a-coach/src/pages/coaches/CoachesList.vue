@@ -16,10 +16,15 @@
 						>
 						<base-button
 							v-if="!isLoggedIn"
-							:to="{ name: 'auth' }"
+							:to="{
+								name: 'auth',
+								query: {
+									redirect: 'register',
+								},
+							}"
 							link
 						>
-							Login
+							Login to register as Coach
 						</base-button>
 						<base-button
 							v-if="isLoggedIn && !isCoach && !isLoading"

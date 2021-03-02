@@ -94,6 +94,6 @@ h3 {
 }
 
 .contact-enter-active {
-	transition: all 300s ease-out;
+	transition: all 300ms ease-out;
 }
 </style>

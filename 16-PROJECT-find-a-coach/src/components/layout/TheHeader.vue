@@ -4,7 +4,7 @@
 			<nav>
 				<h1>
 					<router-link :to="{ name: 'home' }" id="brand-title">
-						Coachr
+						Coachuwu
 					</router-link>
 				</h1>
 				<ul>
@@ -42,6 +42,7 @@ export default {
 	methods: {
 		logout() {
 			this.$store.dispatch('logout');
+				this.$router.replace({ name: 'coaches' });
 		},
 	},
 };
