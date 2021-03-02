@@ -16,6 +16,10 @@
 			<base-card color="color">
 				<header>
 					<h2>Requests Received</h2>
+					<!-- I added this so who knows -->
+					<h3 v-if="currentCoach" class="current">
+						Logged in as {{ currentCoach }}
+					</h3>
 				</header>
 				<base-spinner v-if="isLoading"></base-spinner>
 				<ul v-else-if="hasRequests && !isLoading">
@@ -45,6 +49,7 @@ export default {
 		return {
 			isLoading: false,
 			error: null,
+			currentCoach: null,
 		};
 	},
 	computed: {
@@ -66,9 +71,22 @@ export default {
 		handleError() {
 			this.error = null;
 		},
+		async getCurrentCoach() {
+			const userId = this.$store.getters.userId;
+			await this.$store.dispatch('coaches/loadCoaches', {
+				forceRefresh: false,
+			});
+			const coaches = this.$store.getters['coaches/coaches'];
+			console.log('userId: ' + userId);
+
+			const coach = coaches.find((coach) => coach.id === userId);
+			console.log(coach);
+			this.currentCoach = coach.firstName;
+		},
 	},
 	created() {
 		this.loadRequests();
+		this.getCurrentCoach();
 	},
 };
 </script>
@@ -102,6 +120,11 @@ h3 {
 	text-align: center;
 	font-size: 1.8rem;
 	margin-bottom: 0.8rem;
+}
+
+.current {
+	color: var(--purple-2);
+	margin-bottom: 2.4rem;
 }
 
 .controls {

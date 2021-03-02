@@ -66,7 +66,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log(`navigating from ${from.name} to ${to.name}`);
+  //   console.log(`navigating from ${from.name} to ${to.name}`);
   if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
     next({ name: 'auth' });
   } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
