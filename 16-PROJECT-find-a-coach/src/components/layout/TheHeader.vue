@@ -4,7 +4,7 @@
 			<nav>
 				<h1>
 					<router-link :to="{ name: 'home' }" id="brand-title">
-						Coachuwu
+						Coachew
 					</router-link>
 				</h1>
 				<ul>
