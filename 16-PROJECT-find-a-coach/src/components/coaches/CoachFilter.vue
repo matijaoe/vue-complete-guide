@@ -99,7 +99,7 @@ input {
 @media only screen and (max-width: 600px) {
 	.filter-option {
 		font-size: 1.6rem;
-		padding: 0.4em;
+		padding: 0.55em;
 	}
 
 	.filter-option label {
@@ -108,6 +108,10 @@ input {
 	}
 }
 @media only screen and (max-width: 400px) {
+	.filter-option {
+		font-size: 1.6rem;
+		padding: 0.4em;
+	}
 	input {
 		transform: scale(1.2);
 	}
