@@ -2,7 +2,7 @@
 	<section class="row">
 		<base-card class="card" mode="shadow">
 			<h2>💀 Page not found 💀</h2>
-			<img src="https://i.gifer.com/yH.gif" alt="" />
+			<img src="https://i.gifer.com/yH.gif" alt="travolta" />
 		</base-card>
 	</section>
 </template>

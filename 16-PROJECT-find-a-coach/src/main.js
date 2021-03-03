@@ -1,25 +1,26 @@
 // https://16-project-find-a-coach-mat2ja.vercel.app
 
-import { createApp } from 'vue';
+import { createApp, defineAsyncComponent } from 'vue';
 
 import router from './routes';
 import store from './store/index';
 import App from './App';
-
-import axios from 'axios';
-import VueAxios from 'vue-axios';
 
 import BaseCard from './components/UI/BaseCard';
 import BaseButton from './components/UI/BaseButton';
 import BaseBadge from './components/UI/BaseBadge';
 import BasePrice from './components/UI/BasePrice';
 import BaseSpinner from './components/UI/BaseSpinner';
-import BaseDialog from './components/UI/BaseDialog';
+
+// vue will import it only when its required
+const BaseDialog = defineAsyncComponent(() =>
+	import('./components/UI/BaseDialog')
+);
+
 const app = createApp(App);
 
 app.use(router);
 app.use(store);
-app.use(VueAxios, axios);
 
 app.component('base-card', BaseCard);
 app.component('base-button', BaseButton);
