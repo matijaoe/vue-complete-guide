@@ -77,10 +77,8 @@ export default {
 				forceRefresh: false,
 			});
 			const coaches = this.$store.getters['coaches/coaches'];
-			console.log('userId: ' + userId);
 
 			const coach = coaches.find((coach) => coach.id === userId);
-			console.log(coach);
 			this.currentCoach = coach.firstName;
 		},
 	},

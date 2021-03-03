@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+let timer;
+
 export default {
   async login(context, payload) {
     return context.dispatch('auth', {
@@ -30,13 +32,20 @@ export default {
         returnSecureToken: true
       });
 
+      const expiresIn = +responseData.expiresIn * 1000; // turn to milliseconds
+      const expirationDate = Date.now() + expiresIn;
+
       localStorage.setItem('token', responseData.idToken);
       localStorage.setItem('userId', responseData.localId);
+      localStorage.setItem('tokenExpiration', expirationDate);
+
+      timer = setTimeout(() => {
+        context.dispatch('autoLogout');
+      }, expiresIn);
 
       context.commit('setUser', {
         token: responseData.idToken,
-        userId: responseData.localId,
-        tokenExpiration: responseData.expiresIn
+        userId: responseData.localId
       });
     } catch (err) {
       const error = new Error(
@@ -49,23 +58,40 @@ export default {
   tryLogin(context) {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+    // how much time is left till expiring
+    const expiresIn = +tokenExpiration - Date.now();
+
+    // if timer expired, dont login
+    if (expiresIn < 10000) return;
+
+    setTimeout(() => {
+      context.dispatch('autoLogout');
+    }, expiresIn);
+
     if (token && userId) {
       // login user automatically
       context.commit('setUser', {
         token,
-        userId,
-        tokenExpiration: null
+        userId
       });
     }
   },
   logout(context) {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
+    localStorage.removeItem('tokenExpiration');
+
+    clearTimeout(timer);
 
     context.commit('setUser', {
       token: null,
-      userId: null,
-      tokenExpiration: null
+      userId: null
     });
+  },
+  autoLogout(context) {
+    context.dispatch('logout');
+    context.commit('setAutoLogout');
   }
 };

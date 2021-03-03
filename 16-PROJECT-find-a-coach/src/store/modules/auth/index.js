@@ -7,7 +7,7 @@ export default {
     return {
       userId: null,
       token: null,
-      tokenExpiration: null,
+      didAutoLogout: false,
       API_KEY: 'AIzaSyDjWvr2HzvuRpm-7H7FN53SjqaZZ4yKvcc'
     };
   },
