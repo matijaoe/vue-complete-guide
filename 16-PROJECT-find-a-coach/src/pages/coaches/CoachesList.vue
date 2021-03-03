@@ -58,7 +58,6 @@
 <script>
 import CoachItem from '../../components/coaches/CoachItem';
 import CoachFilter from '../../components/coaches/CoachFilter';
-
 export default {
 	components: {
 		CoachItem,
