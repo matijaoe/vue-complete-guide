@@ -15,7 +15,10 @@ export default {
     const token = context.rootGetters.token;
 
     try {
-      await axios.put(`${databaseUrl}/coaches/${userId}.json?auth=${token}`, coachData);
+      await axios.put(
+        `${databaseUrl}/coaches/${userId}.json?auth=${token}`,
+        coachData
+      );
 
       context.commit('registerCoach', {
         ...coachData,

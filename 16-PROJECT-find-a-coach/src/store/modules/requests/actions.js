@@ -30,8 +30,8 @@ export default {
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
     const databaseUrl = context.rootGetters.databaseUrl;
-   
-	const token = context.rootGetters.token;
+
+    const token = context.rootGetters.token;
     const options = {};
 
     if (token) {
