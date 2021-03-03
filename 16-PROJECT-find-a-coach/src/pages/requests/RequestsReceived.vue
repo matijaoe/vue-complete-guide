@@ -93,6 +93,7 @@ export default {
 section:first-of-type {
 	margin-top: 3.2rem;
 }
+
 header {
 	text-align: center;
 }
