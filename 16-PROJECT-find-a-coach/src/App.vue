@@ -45,8 +45,6 @@ export default {
 	--purple-4: hsl(249, 26%, 21%);
 	--pink-1: #fd98d0;
 	--pink-2: #ece1fc;
-	--blue-light-1: #b8cdf8;
-	--green-light-1: #95f2d9;
 	--gray-1: #41463d;
 	--gray-2: #6b6b6b;
 	--white-1: #fff;
@@ -140,11 +138,5 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
 	background-color: var(--gray-2); /* color of the scroll thumb */
 	border-radius: 2rem; /* roundness of the scroll thumb */
-}
-
-@media only screen and (max-width: 600px) {
-	html {
-		/* font-size: 56.25%; */
-	}
 }
 </style>
