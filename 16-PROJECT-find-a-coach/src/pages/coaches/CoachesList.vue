@@ -18,9 +18,7 @@
 							v-if="!isLoggedIn"
 							:to="{
 								name: 'auth',
-								query: {
-									redirect: 'register',
-								},
+								query: { redirect: 'register' },
 							}"
 							link
 						>
@@ -60,6 +58,7 @@
 <script>
 import CoachItem from '../../components/coaches/CoachItem';
 import CoachFilter from '../../components/coaches/CoachFilter';
+
 export default {
 	components: {
 		CoachItem,
