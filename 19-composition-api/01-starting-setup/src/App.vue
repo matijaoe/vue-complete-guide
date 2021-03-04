@@ -1,12 +1,13 @@
 <template>
 	<section class="container">
-		<h2>{{ userAge }}</h2>
-		<h3>{{ userName }}</h3>
+		<h2>{{ user.name }}</h2>
+		<h3>{{ user.age }}</h3>
+		<button @click="setAge">Change age</button>
 	</section>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive } from 'vue';
 
 export default {
 	setup() {
@@ -15,16 +16,11 @@ export default {
 			age: 21,
 		});
 
-		setTimeout(() => {
-			user.name = 'Lovro';
-			user.age++;
-		}, 2000);
+		function setNewAge() {
+			user.age = 52;
+		}
 
-		// makes properties in object also reactive
-		// now changes will be picked up and updated in the template (if returning them directly)
-		const userRefs = toRefs(user);
-
-		return { userName: userRefs.name, userAge: userRefs.age };
+		return { user, setAge: setNewAge };
 	},
 };
 </script>
