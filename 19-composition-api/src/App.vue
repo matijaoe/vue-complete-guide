@@ -1,34 +1,30 @@
 <template>
 	<section class="container">
-		<h2>{{ user.name }}</h2>
-		<h3>{{ user.age }}</h3>
+		<h2>{{ userAge }}</h2>
+		<h3>{{ userName }}</h3>
 	</section>
 </template>
 
 <script>
-import { ref, reactive, isReactive, isRef } from 'vue';
+import { reactive, toRefs } from 'vue';
 
 export default {
 	setup() {
-		const uAge = ref(21);
-
 		const user = reactive({
 			name: 'Matija',
 			age: 21,
 		});
-
-		// console.log(uAge, user);
-		console.log('uAge.value:', isRef(uAge.value));
-		console.log('uAge:', isRef(uAge));
-		console.log('user.name:', isReactive(user.name), user.age);
-		console.log('user:', isReactive(user), user.age);
 
 		setTimeout(() => {
 			user.name = 'Lovro';
 			user.age++;
 		}, 2000);
 
-		return { user };
+		// makes properties in object also reactive
+		// now changes will be picked up and updated in the template (if returning them directly)
+		const userRefs = toRefs(user);
+
+		return { userName: userRefs.name, userAge: userRefs.age };
 	},
 };
 </script>
