@@ -6,55 +6,22 @@
 </template>
 
 <script>
-// import { ref } from 'vue';
-import { reactive } from 'vue';
+import { ref, reactive, isReactive, isRef } from 'vue';
 
 export default {
-	components: {},
-	props: [],
-	// data() {
-	// 	return {
-	// 		userName: 'Maximilian',
-	// 	};
-	// },
 	setup() {
-		//* ref with primitive
-		// const uName = ref('Matija');
-		// const uAge = ref(21);
+		const uAge = ref(21);
 
-		// setTimeout(() => {
-		// 	uName.value = 'Lovro';
-		// 	uAge.value++;
-		// }, 2000);
-
-		// return { userName: user.value.name, age: user.value.age };
-
-		// --------------------------------------
-
-		//* ref with objects
-		// const user = ref({
-		// 	name: 'Matija',
-		// 	age: 21,
-		// });
-
-		// console.log(user);
-
-		// setTimeout(() => {
-		// 	user.value.name = 'Lovro';
-		// 	user.value.age++;
-		// }, 2000);
-
-		// return { user };
-
-		// --------------------------------------
-
-		//* reactive - only for objects
 		const user = reactive({
 			name: 'Matija',
 			age: 21,
 		});
 
-		console.log(user);
+		// console.log(uAge, user);
+		console.log('uAge.value:', isRef(uAge.value));
+		console.log('uAge:', isRef(uAge));
+		console.log('user.name:', isReactive(user.name), user.age);
+		console.log('user:', isReactive(user), user.age);
 
 		setTimeout(() => {
 			user.name = 'Lovro';
