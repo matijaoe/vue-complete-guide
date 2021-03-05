@@ -4,8 +4,8 @@
 		<h3>{{ age }}</h3>
 		<button @click="setAge">Change age</button>
 		<div>
-			<input type="text" placeholder="First name" @input="setFirstName" />
-			<input type="text" placeholder="Last name" @input="setLastName" />
+			<input type="text" placeholder="First name" v-model="firstName" />
+			<input type="text" placeholder="Last name" v-model="lastName" />
 		</div>
 	</section>
 </template>
@@ -23,22 +23,15 @@ export default {
 			uAge.value = 32;
 		}
 
-		function setFirstName(event) {
-			firstName.value = event.target.value;
-		}
-
-		function setLastName(event) {
-			lastName.value = event.target.value;
-		}
-
 		const uName = computed(() => `${firstName.value} ${lastName.value}`);
 
+		// we have to expose (return) ref values if we use with v-model
 		return {
 			age: uAge,
 			setAge: setNewAge,
 			userName: uName,
-			setFirstName,
-			setLastName,
+			firstName,
+			lastName,
 		};
 	},
 };
