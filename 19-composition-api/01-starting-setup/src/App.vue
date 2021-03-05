@@ -5,7 +5,8 @@
 		<button @click="setAge">Change age</button>
 		<div>
 			<input type="text" placeholder="First name" v-model="firstName" />
-			<input type="text" placeholder="Last name" v-model="lastName" />
+			<input type="text" placeholder="Last name" ref="lastNameInput" />
+			<button @click="setLastName">Set last name</button>
 		</div>
 	</section>
 </template>
@@ -18,22 +19,21 @@ export default {
 		const firstName = ref('');
 		const lastName = ref('');
 		const uAge = ref(21);
+		const lastNameInput = ref(null);
 
 		function setNewAge() {
 			uAge.value = 32;
 		}
 
-		// watch(uAge, (newValue, oldValue) => {
-		// 	console.log(`${oldValue} -> ${newValue}`);
-		// });
+		watch(uAge, (newValue, oldValue) => {
+			console.log(`${oldValue} -> ${newValue}`);
+		});
 
 		const uName = computed(() => `${firstName.value} ${lastName.value}`);
 
-		// multiple dependencies per watcher
-		watch([uAge, uName], (newValues, oldValues) => {
-			console.log(`Age: ${oldValues[0]} -> ${newValues[0]}`);
-			console.log(`Name: ${oldValues[1]} -> ${newValues[1]}`);
-		});
+		function setLastName() {
+			lastName.value = lastNameInput.value.value;
+		}
 
 		// we have to expose (return) ref values if we use with v-model
 		return {
@@ -41,7 +41,8 @@ export default {
 			setAge: setNewAge,
 			userName: uName,
 			firstName,
-			lastName,
+			lastNameInput,
+			setLastName,
 		};
 	},
 };
