@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 export default {
 	setup() {
@@ -23,7 +23,17 @@ export default {
 			uAge.value = 32;
 		}
 
+		// watch(uAge, (newValue, oldValue) => {
+		// 	console.log(`${oldValue} -> ${newValue}`);
+		// });
+
 		const uName = computed(() => `${firstName.value} ${lastName.value}`);
+
+		// multiple dependencies per watcher
+		watch([uAge, uName], (newValues, oldValues) => {
+			console.log(`Age: ${oldValues[0]} -> ${newValues[0]}`);
+			console.log(`Name: ${oldValues[1]} -> ${newValues[1]}`);
+		});
 
 		// we have to expose (return) ref values if we use with v-model
 		return {
