@@ -1,6 +1,8 @@
 <template>
-	<h2>{{ userName }}</h2>
-	<h3>{{ age }}</h3>
+	<div class="test">
+		<h2>{{ userName }}</h2>
+		<h3>{{ age }}</h3>
+	</div>
 </template>
 
 <script>
@@ -12,10 +14,13 @@ export default {
 	// 		return `${this.firstName} ${this.lastName}`;
 	// 	},
 	// },
-	setup(props) {
+	setup(props, context) {
+		console.log(context);
 		const uName = computed(() => {
 			return `${props.firstName} ${props.lastName}`;
 		});
+
+		// context.emit('save-data'); // this.$emit('save-data')
 
 		return { userName: uName };
 	},
