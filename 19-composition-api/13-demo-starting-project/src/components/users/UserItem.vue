@@ -1,7 +1,7 @@
 <template>
 	<li>
 		<h3>{{ userName }}</h3>
-		<button @click="viewProjects">View Projects</button>
+		<button @click="$emit('list-projects', id)">View Projects</button>
 	</li>
 </template>
 
@@ -9,14 +9,6 @@
 export default {
 	props: ['id', 'userName'],
 	emits: ['list-projects'],
-	setup(props, context) {
-		function viewProjects() {
-			context.emit('list-projects', props.id);
-		}
-		return {
-			viewProjects,
-		};
-	},
 };
 </script>
 

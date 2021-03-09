@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, toRefs } from 'vue';
 import ProjectItem from './ProjectItem.vue';
 
 export default {
@@ -46,7 +46,11 @@ export default {
 			}
 		});
 
-		watch(props, () => (enteredSearchTerm.value = ''));
+		// const propsWithRefs = toRefs(props);
+		// const user = propsWithRefs.user;
+		const { user } = toRefs(props);
+
+		watch(user, () => (enteredSearchTerm.value = ''));
 
 		//* COMPUTED
 		const hasProjects = computed(() => {
