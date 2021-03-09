@@ -6,7 +6,17 @@
 </template>
 
 <script>
-import { computed, inject } from 'vue';
+import {
+	computed,
+	inject,
+	onBeforeMount,
+	onMounted,
+	onBeforeUpdate,
+	onUpdated,
+	onBeforeUnmount,
+	onUnmounted,
+} from 'vue';
+
 export default {
 	props: ['firstName', 'lastName'],
 	// computed: {
@@ -21,6 +31,25 @@ export default {
 		});
 
 		const age = inject('age');
+
+		onBeforeMount(() => {
+			console.log('onBeforeMount');
+		});
+		onMounted(() => {
+			console.log('onMounted');
+		});
+		onBeforeUpdate(() => {
+			console.log('onBeforeUpdate');
+		});
+		onUpdated(() => {
+			console.log('onUpdated');
+		});
+		onBeforeUnmount(() => {
+			console.log('onBeforeUnmount');
+		});
+		onUnmounted(() => {
+			console.log('onUpdated');
+		});
 
 		// context.emit('save-data'); // this.$emit('save-data')
 
