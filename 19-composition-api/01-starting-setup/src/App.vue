@@ -1,6 +1,6 @@
 <template>
 	<section class="container">
-		<UserData :first-name="firstName" :last-name="lastName" :age="age" />
+		<UserData :first-name="firstName" :last-name="lastName" />
 		<button @click="setAge">Change age</button>
 		<div>
 			<input type="text" placeholder="First name" v-model="firstName" />
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
 import UserData from './components/UserData.vue';
 
 export default {
@@ -37,9 +37,10 @@ export default {
 			lastName.value = lastNameInput.value.value;
 		}
 
+		provide('age', uAge);
+
 		// we have to expose (return) ref values if we use with v-model
 		return {
-			age: uAge,
 			setAge: setNewAge,
 			userName: uName,
 			firstName,
