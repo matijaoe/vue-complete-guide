@@ -1,6 +1,6 @@
 <template>
 	<li>
-		<h3>{{ username }}</h3>
+		<h3>{{ userName }}</h3>
 		<button @click="viewProjects">View Projects</button>
 	</li>
 </template>
@@ -15,7 +15,6 @@ export default {
 		}
 		return {
 			viewProjects,
-			username: props.userName,
 		};
 	},
 };
