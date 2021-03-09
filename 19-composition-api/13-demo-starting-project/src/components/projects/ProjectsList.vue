@@ -46,7 +46,7 @@ export default {
 			}
 		});
 
-		watch(props.user, () => (enteredSearchTerm.value = ''));
+		watch(props, () => (enteredSearchTerm.value = ''));
 
 		//* COMPUTED
 		const hasProjects = computed(() => {

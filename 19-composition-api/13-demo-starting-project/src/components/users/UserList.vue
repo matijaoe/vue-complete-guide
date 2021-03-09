@@ -40,27 +40,15 @@ export default {
 		UserItem,
 	},
 	props: ['users'],
+	emits: ['list-projects'],
 	setup(props) {
-		//* DATA
+		//* Search
 		const enteredSearchTerm = ref('');
 		const activeSearchTerm = ref('');
-		const sorting = ref(null);
 
-		//* METHODS
 		const updateSearch = (val) => (enteredSearchTerm.value = val);
-		const sort = (mode) => (sorting.value = mode);
 
-		watch(enteredSearchTerm, (val) => {
-			setTimeout(() => {
-				if (enteredSearchTerm.value === val) {
-					activeSearchTerm.value = val;
-				}
-			}, 100);
-		});
-
-		//* runs when activeSearchTerm changes, return filtered users
 		const availableUsers = computed(() => {
-			console.log(props.users);
 			let users = props.users;
 			if (activeSearchTerm.value) {
 				users = users
@@ -74,31 +62,37 @@ export default {
 			return users;
 		});
 
-		//* returns sorted users
+		watch(enteredSearchTerm, (val) => {
+			setTimeout(() => {
+				if (enteredSearchTerm.value === val) {
+					activeSearchTerm.value = val;
+				}
+			}, 100);
+		});
+
+		//* Sorting
+		const sorting = ref(null);
+
+		const sort = (mode) => (sorting.value = mode);
+
 		const displayedUsers = computed(() => {
 			if (!sorting.value) {
 				return availableUsers.value;
 			}
+			// we slice so we dont modify existing array
 			return availableUsers.value.slice().sort((u1, u2) => {
-				if (sorting.value === 'asc' && u1.fullName > u2.fullName) {
-					return 1;
-				} else if (sorting.value === 'asc') {
-					return -1;
-				} else if (
-					sorting.value === 'desc' &&
-					u1.fullName > u2.fullName
-				) {
-					return -1;
-				} else {
-					return 1;
+				if (sorting.value === 'asc') {
+					return u1.fullName > u2.fullName ? 1 : -1;
+				} else if (sorting.value === 'desc') {
+					return u1.fullName > u2.fullName ? -1 : 1;
 				}
 			});
 		});
 
 		return {
 			enteredSearchTerm,
-			sorting,
 			updateSearch,
+			sorting,
 			sort,
 			displayedUsers,
 		};
