@@ -20,20 +20,11 @@ export default {
 			return products.value.find((prod) => prod.id === props.pid);
 		});
 
-		// const { title, price, description } = selectedProduct;
 		const title = computed(() => selectedProduct.value.title);
 		const price = computed(() => selectedProduct.value.price);
 		const description = computed(() => selectedProduct.value.description);
 
 		return { title, price, description };
-
-		// const selectedProduct = products.value.find(
-		// 	(prod) => prod.id === props.pid
-		// );
-
-		// const { title, price, description } = selectedProduct;
-
-		// return { title, price, description };
 	},
 };
 </script>
