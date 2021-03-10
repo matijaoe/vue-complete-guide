@@ -17,7 +17,7 @@ export default {
 		const products = inject('products');
 
 		const route = useRoute();
-		console.log(route);
+		// console.log(route);
 
 		// must be computed so it runs again when url changes
 		const selectedProduct = computed(() => {
