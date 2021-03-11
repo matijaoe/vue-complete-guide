@@ -44,11 +44,13 @@ export default {
 		);
 
 		const hasProjects = computed(function () {
-			return props.user.projects && availableItems.value.length > 0;
+			return user.value.projects && availableItems.value.length > 0;
 		});
 
 		watch(user, function () {
-			enteredSearchTerm.value = '';
+			// use the hook method instead of changing it directly
+			// makes it more readable cos we know from where the data is coming
+			updateSearch('');
 		});
 
 		return {
