@@ -7,11 +7,11 @@ function useSearch(items, searchProp) {
 	const availableItems = computed(function() {
 		let availItems = [];
 		if (activeSearchTerm.value) {
-			availItems = items.filter(usr =>
+			availItems = items.value.filter(usr =>
 				usr[searchProp].includes(activeSearchTerm.value)
 			);
-		} else if (items) {
-			availItems = items;
+		} else if (items.value) {
+			availItems = items.value;
 		}
 		return availItems;
 	});

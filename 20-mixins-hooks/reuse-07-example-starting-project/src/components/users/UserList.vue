@@ -35,7 +35,7 @@
 import UserItem from './UserItem.vue';
 import useSearch from '@/components/hooks/search.js';
 
-import { ref, computed } from 'vue';
+import { ref, computed, toRefs } from 'vue';
 
 export default {
 	components: {
@@ -44,8 +44,12 @@ export default {
 	props: ['users'],
 	emits: ['list-projects'],
 	setup(props) {
+		// we're making it as sa ref bcs in the hook we access it with .value, so it has to be ref
+		// we pass reff to hook bcs we did it like that in ProjectsList, and we wanna reuse the same hook
+		const { users } = toRefs(props);
+
 		const { enteredSearchTerm, updateSearch, availableItems } = useSearch(
-			props.users,
+			users,
 			'fullName'
 		);
 
