@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500&family=Inter:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+}
