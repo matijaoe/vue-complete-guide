@@ -1,6 +1,6 @@
 <template>
 	<div class="min-h-screen bg-green-50">
-		<div class="xl:container mx-auto">
+		<div class="2xl:container mx-auto">
 			<TheHeader />
 			<main>
 				<router-view></router-view>

@@ -5,7 +5,7 @@
 		<header class="bg-green-300 relative">
 			<slot name="header"></slot>
 		</header>
-		<div class="p-8">
+		<div class="p-6 pt-10">
 			<slot></slot>
 		</div>
 	</article>
