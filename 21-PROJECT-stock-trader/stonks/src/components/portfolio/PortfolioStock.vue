@@ -14,7 +14,7 @@
 				<div class="flex gap-2 items-baseline">
 					<span>You have</span>
 					<span class="text-green-400 font-semibold text-lg">
-						{{ amount }} stocks
+						{{ qnt }} stocks
 					</span>
 					<span>worth</span>
 					<span class="text-green-400 font-semibold text-lg">
@@ -42,7 +42,7 @@
 							:disabled="!isValid"
 						>
 							Sell
-							<span v-if="sellAmount > 0 && sellAmount <= amount">
+							<span v-if="sellAmount > 0 && sellAmount <= qnt">
 								for ${{ formattedOrderTotal }}
 							</span>
 						</base-button>
@@ -76,7 +76,7 @@ export default {
 			if (this.isValid) {
 				const order = {
 					ticker: this.ticker,
-					amount: this.sellAmount,
+					qnt: this.sellAmount,
 					cost: this.sellAmount * this.price,
 				};
 
@@ -100,11 +100,11 @@ export default {
 					return;
 				} else if (isNaN(+qnt)) {
 					this.isValid = false;
-					throw Error(`Your sell amount must be a number`);
+					throw Error(`Your sell qnt must be a number`);
 				} else if (qnt <= 0) {
 					this.isValid = false;
 					throw Error(`Minimum order is at least 1 stock`);
-				} else if (qnt > this.amount) {
+				} else if (qnt > this.qnt) {
 					this.isValid = false;
 					throw Error(`You can't sell more than you have`);
 				} else {
@@ -141,14 +141,14 @@ export default {
 
 			return stocks;
 		},
-		amount() {
+		qnt() {
 			const stock = this.portolioStocks.find(
 				(stock) => stock.ticker === this.ticker
 			);
-			return stock.amount;
+			return stock.qnt;
 		},
 		formattedTotal() {
-			return (this.amount * this.price).toLocaleString();
+			return (this.qnt * this.price).toLocaleString();
 		},
 		formattedOrderTotal() {
 			return (this.sellAmount * this.price).toLocaleString();

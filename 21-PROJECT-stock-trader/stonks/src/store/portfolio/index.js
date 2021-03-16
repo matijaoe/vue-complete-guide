@@ -2,47 +2,43 @@ export default {
 	namespaced: true,
 	state() {
 		return {
-			funds: 400,
-			stocks: [
-				// {
-				// 	ticker: 'TSLA',
-				// 	amount: 3,
-				// },
-				// {
-				// 	ticker: 'AAPL',
-				// 	amount: 9,
-				// },
-				// {
-				// 	ticker: 'MSFT',
-				// 	amount: 2,
-				// },
-				// {
-				// 	ticker: 'GME',
-				// 	amount: 14,
-				// },
-			],
+			funds: 10000,
+			stocks: [],
 		};
 	},
 	mutations: {
-		spendFunds(state, payload) {
-			const { ticker, cost, amount } = payload;
+		buyStock(state, payload) {
+			const { ticker, cost, qnt } = payload;
 			state.funds -= cost;
 
 			const stock = state.stocks.find((stock) => stock.ticker === ticker);
-			stock.amount -= amount;
-			if (stock.amount <= 0) {
-				state.stocks = state.stocks.filter(
-					(stock) => stock.ticker !== ticker
-				);
+
+			if (stock) {
+				stock.qnt += qnt;
+			} else {
+				state.stocks.push({
+					ticker,
+					qnt: qnt,
+				});
 			}
+
+			console.log(state.stocks);
+
+			// const stock = state.stocks.find((stock) => stock.ticker === ticker);
+			// stock.qnt -= qnt;
+			// if (stock.qnt <= 0) {
+			// 	state.stocks = state.stocks.filter(
+			// 		(stock) => stock.ticker !== ticker
+			// 	);
+			// }
 		},
 		sellStock(state, payload) {
-			const { ticker, cost, amount } = payload;
+			const { ticker, cost, qnt } = payload;
 			state.funds += cost;
 
 			const stock = state.stocks.find((stock) => stock.ticker === ticker);
-			stock.amount -= amount;
-			if (stock.amount <= 0) {
+			stock.qnt -= qnt;
+			if (stock.qnt <= 0) {
 				state.stocks = state.stocks.filter(
 					(stock) => stock.ticker !== ticker
 				);
@@ -53,7 +49,7 @@ export default {
 		buyStock(context, payload) {
 			const { cost } = payload;
 			if (context.getters.funds - cost >= 0) {
-				context.commit('spendFunds', payload);
+				context.commit('buyStock', payload);
 			}
 		},
 		sellStock(context, payload) {

@@ -5,7 +5,9 @@
 			<StockItem
 				v-for="stock in stocks"
 				:key="stock.ticker"
-				:stock="stock"
+				:ticker="stock.ticker"
+				:name="stock.name"
+				:price="stock.price"
 			/>
 		</div>
 	</section>
