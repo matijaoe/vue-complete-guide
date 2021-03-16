@@ -13,7 +13,16 @@
 				:price="stock.price"
 			/>
 		</div>
-		<div v-else>No stocks in portoflio</div>
+		<div v-else>
+			<p class="text-6xl text-center" style="transform: translateY(200%)">
+				You're fresh outta
+				<router-link
+					class="ml-1 font-display text-6xl text-font-medium bg-green-200 rounded-md px-2 text-green-700"
+					:to="{ name: 'stocks' }"
+					>stonks
+				</router-link>
+			</p>
+		</div>
 	</section>
 </template>
 

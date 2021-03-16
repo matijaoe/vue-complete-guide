@@ -1,7 +1,7 @@
 <template>
 	<base-container class="w-full">
 		<template #header>
-			<div class="flex justify-between items-center">
+			<div class="flex justify-between items-center mb-2">
 				<div class="flex items-center space-x-4 text-2xl">
 					<span class="font-semibold mr">{{ name }}</span>
 					<span class="opacity-10">{{ ticker }}</span>

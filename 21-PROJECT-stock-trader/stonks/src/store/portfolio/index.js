@@ -4,22 +4,22 @@ export default {
 		return {
 			funds: 400,
 			stocks: [
-				{
-					ticker: 'TSLA',
-					amount: 3,
-				},
-				{
-					ticker: 'AAPL',
-					amount: 9,
-				},
-				{
-					ticker: 'MSFT',
-					amount: 2,
-				},
-				{
-					ticker: 'GME',
-					amount: 14,
-				},
+				// {
+				// 	ticker: 'TSLA',
+				// 	amount: 3,
+				// },
+				// {
+				// 	ticker: 'AAPL',
+				// 	amount: 9,
+				// },
+				// {
+				// 	ticker: 'MSFT',
+				// 	amount: 2,
+				// },
+				// {
+				// 	ticker: 'GME',
+				// 	amount: 14,
+				// },
 			],
 		};
 	},
