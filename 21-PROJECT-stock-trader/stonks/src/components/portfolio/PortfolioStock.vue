@@ -2,9 +2,9 @@
 	<base-container class="w-full">
 		<template #header>
 			<div class="flex justify-between items-center">
-				<div class="flex items-center space-x-2">
-					<span class="text-2xl">{{ name }}</span>
-					<span class="text-2xl">({{ ticker }})</span>
+				<div class="flex items-center space-x-4 text-2xl">
+					<span class="font-semibold mr">{{ name }}</span>
+					<span class="opacity-10">{{ ticker }}</span>
 				</div>
 				<span class="text-2xl ml-auto">${{ price }}</span>
 			</div>
@@ -13,39 +13,43 @@
 			<div class="flex flex-col space-y-4">
 				<div class="flex gap-2 items-baseline">
 					<span>You have</span>
-					<span class="text-green-400 font-semibold text-lg"
-						>{{ amount }} stocks</span
-					>
+					<span class="text-green-400 font-semibold text-lg">
+						{{ amount }} stocks
+					</span>
 					<span>worth</span>
-					<span class="text-green-400 font-semibold text-lg"
-						>${{ (amount * price).toLocaleString() }}</span
-					>
+					<span class="text-green-400 font-semibold text-lg">
+						${{ formattedTotal }}
+					</span>
 				</div>
 
-				<div class="flex items-center justify-between gap-8 relative">
+				<div
+					class="flex flex-col md:flex-row items-center justify-between relative gap-4 md:gap-2 pb-2"
+				>
 					<input
 						type="text"
 						v-model.trim.number="sellAmount"
 						placeholder="Quantity"
-						class="outline-none bg-transparent placeholder-green-200 p-1 text-lg border-b-2 border-solid border-green-500 text-center"
+						class="outline-none bg-transparent placeholder-green-200 py-1 text-2xl text-center"
 						@input="validateAmount"
 						@keydown.enter="sellStock"
+						@blur="clearIfError"
 					/>
-					<div class="">
+					<div class="w-full md:w-auto">
 						<base-button
-							class="px-8"
+							mode="light"
+							class="px-8 w-full md:w-auto"
 							@click="sellStock"
 							:disabled="!isValid"
 						>
 							Sell
 							<span v-if="sellAmount > 0 && sellAmount <= amount">
-								for ${{ (sellAmount * price).toLocaleString() }}
+								for ${{ formattedOrderTotal }}
 							</span>
 						</base-button>
 					</div>
 					<p
-						v-if="!isValid"
-						class="text-xs text-red-500 absolute -bottom-4"
+						v-if="error"
+						class="text-xs text-red-500 absolute -bottom-3 md:-bottom-2"
 					>
 						{{ error }}
 					</p>
@@ -56,8 +60,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-	props: ['name', 'ticker', 'price', 'amount'],
+	props: ['name', 'ticker', 'price'],
 	data() {
 		return {
 			sellAmount: null,
@@ -67,8 +73,6 @@ export default {
 	},
 	methods: {
 		sellStock() {
-			console.log(this.isValid);
-
 			if (this.isValid) {
 				const order = {
 					ticker: this.ticker,
@@ -77,26 +81,24 @@ export default {
 				};
 
 				console.log('sell ' + this.sellAmount + ' of ' + this.ticker);
-				this.$store.dispatch('portfolio/spendFunds', order);
+				this.$store.dispatch('portfolio/sellStock', order);
 
 				this.sellAmount = '';
 				this.isValid = true;
 				this.error = null;
 			} else {
-				console.log('you cant sell more than you have!');
 				//todo shake card or button as an error
 			}
 		},
 		validateAmount() {
 			const qnt = this.sellAmount;
-			// console.log(`Sell ${qnt} stocks`);
 
 			try {
 				if (qnt === '') {
+					this.isValid = false;
 					this.error = null;
 					return;
-				}
-				if (isNaN(+qnt)) {
+				} else if (isNaN(+qnt)) {
 					this.isValid = false;
 					throw Error(`Your sell amount must be a number`);
 				} else if (qnt <= 0) {
@@ -106,7 +108,6 @@ export default {
 					this.isValid = false;
 					throw Error(`You can't sell more than you have`);
 				} else {
-					console.log('just right 💚');
 					this.isValid = true;
 					this.error = null;
 				}
@@ -114,12 +115,50 @@ export default {
 				this.error = err.message;
 			}
 		},
+		clearIfError() {
+			if (this.erorr || !this.isValid) {
+				this.sellAmount = '';
+				this.error = null;
+				this.isValid = true;
+			}
+		},
+	},
+	computed: {
+		...mapGetters('portfolio', {
+			portolioStocks: 'stocks',
+			funds: 'funds',
+		}),
+		...mapGetters('stocks', {
+			allStocks: 'stocks',
+		}),
+		userStocks() {
+			const userStockTickers = this.portolioStocks.map(
+				(stock) => stock.ticker
+			);
+			const stocks = this.allStocks.filter((stock) =>
+				userStockTickers.includes(stock.ticker)
+			);
+
+			return stocks;
+		},
+		amount() {
+			const stock = this.portolioStocks.find(
+				(stock) => stock.ticker === this.ticker
+			);
+			return stock.amount;
+		},
+		formattedTotal() {
+			return (this.amount * this.price).toLocaleString();
+		},
+		formattedOrderTotal() {
+			return (this.sellAmount * this.price).toLocaleString();
+		},
 	},
 };
 </script>
 
 <style scoped>
 input {
-	max-width: 80px;
+	max-width: 120px;
 }
 </style>

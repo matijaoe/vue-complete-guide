@@ -2,7 +2,7 @@ export default {
 	namespaced: true,
 	state() {
 		return {
-			funds: 10000,
+			funds: 400,
 			stocks: [
 				{
 					ticker: 'TSLA',
@@ -36,13 +36,28 @@ export default {
 				);
 			}
 		},
+		sellStock(state, payload) {
+			const { ticker, cost, amount } = payload;
+			state.funds += cost;
+
+			const stock = state.stocks.find((stock) => stock.ticker === ticker);
+			stock.amount -= amount;
+			if (stock.amount <= 0) {
+				state.stocks = state.stocks.filter(
+					(stock) => stock.ticker !== ticker
+				);
+			}
+		},
 	},
 	actions: {
-		spendFunds(context, payload) {
+		buyStock(context, payload) {
 			const { cost } = payload;
 			if (context.getters.funds - cost >= 0) {
 				context.commit('spendFunds', payload);
 			}
+		},
+		sellStock(context, payload) {
+			context.commit('sellStock', payload);
 		},
 	},
 	getters: {

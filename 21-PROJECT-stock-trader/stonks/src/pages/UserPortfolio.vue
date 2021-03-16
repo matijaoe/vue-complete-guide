@@ -11,7 +11,6 @@
 				:name="stock.name"
 				:ticker="stock.ticker"
 				:price="stock.price"
-				:amount="stockAmount(stock.ticker)"
 			/>
 		</div>
 		<div v-else>No stocks in portoflio</div>
@@ -41,14 +40,6 @@ export default {
 			);
 
 			return stocks;
-		},
-	},
-	methods: {
-		stockAmount(tick) {
-			const stock = this.portolioStocks.find(
-				(stock) => stock.ticker === tick
-			);
-			return stock.amount;
 		},
 	},
 };

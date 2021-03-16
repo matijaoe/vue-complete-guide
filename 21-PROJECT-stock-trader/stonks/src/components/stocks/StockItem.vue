@@ -8,7 +8,7 @@
 					{{ stock.name }}
 				</span>
 				<span
-					class="text-green-400 font-bold font-primary text-7xl lg:text-8xl opacity-50 absolute"
+					class="text-green-300 font-bold font-primary text-7xl lg:text-8xl opacity-50 absolute"
 				>
 					{{ stock.ticker }}
 				</span>
@@ -19,7 +19,7 @@
 						{{ formatPrice(stock.price) }}
 					</span>
 					<span
-						class="absolute right-0 text-green-400 font-bold font-primary text-7xl"
+						class="absolute right-0 text-green-300 font-bold font-primary text-7xl"
 						>$</span
 					>
 				</div>
@@ -28,7 +28,7 @@
 		<template #default>
 			<div class="flex items-center justify-between space-x-4">
 				<div class="flex items-center space-x-4">
-					<span class="">I want</span>
+					<span>Buy</span>
 					<input
 						type="text"
 						v-model.number="quantity"
@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="align-right">
-					<base-button class="px-5">Buy</base-button>
+					<base-button class="px-5" mode="light">Buy</base-button>
 				</div>
 			</div>
 		</template>
