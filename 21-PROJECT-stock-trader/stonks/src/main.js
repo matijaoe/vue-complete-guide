@@ -6,11 +6,13 @@ import store from './store/index';
 
 import BaseButton from './components/UI/BaseButton.vue';
 import BaseContainer from './components/UI/BaseContainer.vue';
+import PageTitle from './components/UI/PageTitle.vue';
 
 const app = createApp(App);
 
 app.component('base-button', BaseButton);
 app.component('base-container', BaseContainer);
+app.component('page-title', PageTitle);
 
 app.use(router);
 app.use(store);

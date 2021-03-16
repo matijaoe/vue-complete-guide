@@ -16,11 +16,6 @@ export default {
 	components: {
 		TheHeader,
 	},
-	data() {
-		return {};
-	},
-	methods: {},
-	computed: {},
 };
 </script>
 

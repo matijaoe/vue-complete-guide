@@ -2,7 +2,7 @@
 	<section>
 		<base-container>
 			<template #header>
-				<div class="mb-6">
+				<div class="mb-4">
 					<h1 class="text-4xl mb-4 font-display font-medium">
 						Trade or view your portfolio
 					</h1>
@@ -28,7 +28,10 @@
 import { mapGetters } from 'vuex';
 export default {
 	computed: {
-		...mapGetters(['formattedFunds']),
+		...mapGetters('portfolio', ['formattedFunds']),
+		// formattedFunds() {
+		// 	return this.$store.getters['portfolio/formattedFunds'];
+		// },
 	},
 };
 </script>
