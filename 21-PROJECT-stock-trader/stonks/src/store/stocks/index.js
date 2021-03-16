@@ -28,6 +28,16 @@ export default {
 					ticker: 'AMZN',
 					price: 3096,
 				},
+				{
+					name: 'Nike',
+					ticker: 'NKE',
+					price: 144,
+				},
+				{
+					name: 'Adobe Inc.',
+					ticker: 'ADBE',
+					price: 450,
+				},
 			],
 		};
 	},

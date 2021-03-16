@@ -100,7 +100,7 @@ export default {
 					return;
 				} else if (isNaN(+qnt)) {
 					this.isValid = false;
-					throw Error(`Your sell qnt must be a number`);
+					throw Error(`Your sell amount must be a number`);
 				} else if (qnt <= 0) {
 					this.isValid = false;
 					throw Error(`Minimum order is at least 1 stock`);
