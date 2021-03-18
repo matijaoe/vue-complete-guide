@@ -21,7 +21,7 @@
 		</nav>
 		<div class="">
 			<div class="mr-32 inline-flex items-center space-x-6">
-				<base-button>End Day</base-button>
+				<base-button @click="endDay">End Day</base-button>
 				<base-button>Save & Load</base-button>
 			</div>
 			<p
@@ -35,10 +35,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
 	computed: {
 		...mapGetters('portfolio', ['formattedFunds']),
+	},
+	methods: {
+		...mapActions('stocks', ['endDay']),
 	},
 };
 </script>
