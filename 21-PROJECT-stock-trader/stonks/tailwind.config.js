@@ -5,8 +5,8 @@ module.exports = {
 		extend: {
 			colors: {},
 			fontFamily: {
-				display: ['Alegreya', 'ui-serif'],
-				primary: ['Inter', 'ui-sans-serif'],
+				display: ['Bebas Neue', 'cursive'],
+				primary: ['Rubik', 'ui-sans-serif'],
 			},
 		},
 	},

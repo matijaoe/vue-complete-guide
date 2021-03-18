@@ -3,6 +3,7 @@ export default {
 	state() {
 		return {
 			funds: 10000,
+			stocksValue: 0,
 			stocks: [],
 		};
 	},
@@ -49,6 +50,9 @@ export default {
 	getters: {
 		funds(state) {
 			return state.funds || 0;
+		},
+		stocksValue(state) {
+			return state.stocksValue || 0;
 		},
 		formattedFunds(state, getters) {
 			return getters.funds.toLocaleString();

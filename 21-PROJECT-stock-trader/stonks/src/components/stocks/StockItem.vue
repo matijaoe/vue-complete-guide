@@ -1,25 +1,52 @@
 <template>
-	<StockCard class="w-full">
+	<StockCard class="w-full overflow-hidden">
 		<template #header>
-			<div class="flex items-center justify-between overflow-hidden">
+			<div class="flex items-center justify-between">
 				<span
-					class="stock-name text-5xl sm:text-5xl md:text-6xl font-medium font-display absolute top-8 z-10"
+					class="stock-name text-5xl md:text-6xl font-medium font-display absolute top-9 z-10"
 				>
 					{{ name }}
 				</span>
 				<span
-					class="text-green-300 font-bold font-primary text-7xl lg:text-8xl opacity-50 absolute"
+					class="text-green-200 opacity-70 font-primary text-7xl lg:text-8xl absolute"
 				>
 					{{ ticker }}
 				</span>
 				<div
-					class="ml-auto p-3 lg:p-4 text-xl flex items-center space-x-2 relative"
+					class="ml-auto px-4 py-3 lg:py-4 text-xl flex items-center space-x-2 relative"
 				>
-					<span class="relative z-10 text-4xl font-bold font-display">
+					<svg
+						v-if="change && change > 0"
+						class="w-7 h-7 text-green-500"
+						fill="currentColor"
+						viewBox="0 0 20 20"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z"
+							clip-rule="evenodd"
+						></path>
+					</svg>
+					<svg
+						v-else-if="change && change < 0"
+						class="w-7 h-7 text-red-400"
+						fill="currentColor"
+						viewBox="0 0 20 20"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z"
+							clip-rule="evenodd"
+						></path>
+					</svg>
+
+					<span class="relative z-10 text-4xl font-display">
 						{{ formatPrice(price) }}
 					</span>
 					<span
-						class="absolute right-0 text-green-300 font-bold font-primary text-7xl"
+						class="absolute right-0 text-green-200 opacity-70 font-primary text-7xl"
 						>$</span
 					>
 				</div>
@@ -34,7 +61,7 @@
 						type="number"
 						v-model.number="buyAmount"
 						placeholder="Number of stonks"
-						class="outline-none rounded-md placeholder-green-300 px-2 text-xl w-full h-full font-semibold bg-transparent focus:bg-green-100 py-2"
+						class="outline-none rounded-md placeholder-green-300 px-2 text-xl w-full h-full bg-transparent focus:bg-green-100 py-2 font-medium"
 						@input="validateAmount"
 						@keyup.enter="buyStock"
 						@blur="clearIfError"
@@ -56,7 +83,7 @@
 				</div>
 				<p
 					v-if="error"
-					class="text-xs text-red-400 absolute -bottom-3 md:-bottom-3 w-full font-semibold sm:text-center md:text-left"
+					class="text-xs text-red-400 absolute -bottom-3 md:-bottom-3 w-full sm:text-center md:text-left px-2"
 				>
 					{{ error }}
 				</p>
@@ -70,7 +97,7 @@ import StockCard from './StockCard.vue';
 
 export default {
 	components: { StockCard },
-	props: ['ticker', 'name', 'price'],
+	props: ['ticker', 'name', 'price', 'change'],
 	data() {
 		return {
 			buyAmount: null,

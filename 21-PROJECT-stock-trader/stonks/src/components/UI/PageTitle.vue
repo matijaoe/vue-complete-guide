@@ -18,7 +18,7 @@ export default {
 .title::before {
 	content: '';
 	position: absolute;
-	top: 40%;
+	top: 35%;
 	left: -1rem;
 	right: -1rem;
 	height: 30%;

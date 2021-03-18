@@ -1,4 +1,4 @@
-export default {
+const stocksModule = {
 	namespaced: true,
 	state() {
 		return {
@@ -6,19 +6,19 @@ export default {
 				{
 					name: 'Apple',
 					ticker: 'AAPL',
-					price: 123,
+					price: 120,
 					change: null,
 				},
 				{
 					name: 'Microsoft',
 					ticker: 'MSFT',
-					price: 233,
+					price: 232,
 					change: null,
 				},
 				{
 					name: 'Tesla',
 					ticker: 'TSLA',
-					price: 700,
+					price: 695,
 					change: null,
 				},
 				{
@@ -40,9 +40,75 @@ export default {
 					change: null,
 				},
 				{
-					name: 'Adobe Inc.',
+					name: 'Adobe',
 					ticker: 'ADBE',
 					price: 450,
+					change: null,
+				},
+				{
+					name: 'Alphabet',
+					ticker: 'GOOG',
+					price: 2024,
+					change: null,
+				},
+				{
+					name: 'Facebook',
+					ticker: 'FB',
+					price: 280,
+					change: null,
+				},
+				{
+					name: 'Tencent',
+					ticker: 'TCHEHY',
+					price: 81,
+					change: null,
+				},
+				{
+					name: 'Alibaba',
+					ticker: 'BABA',
+					price: 236,
+					change: null,
+				},
+				{
+					name: 'Oracle',
+					ticker: 'ORCL',
+					price: 66,
+					change: null,
+				},
+				{
+					name: 'Visa',
+					ticker: 'V',
+					price: 220,
+					change: null,
+				},
+				{
+					name: 'Mastercard',
+					ticker: 'MA',
+					price: 370,
+					change: null,
+				},
+				{
+					name: 'PayPal',
+					ticker: 'PYPL',
+					price: 242,
+					change: null,
+				},
+				{
+					name: 'NVIDIA',
+					ticker: 'NVDA',
+					price: 370,
+					change: null,
+				},
+				{
+					name: 'Coca-Cola',
+					ticker: 'CO',
+					price: 50,
+					change: null,
+				},
+				{
+					name: 'Pfizer',
+					ticker: 'PFE',
+					price: 50,
 					change: null,
 				},
 			],
@@ -62,29 +128,13 @@ export default {
 				);
 				stock.price = newPrice;
 
-				let style = '';
-				let state = '';
-				let emoji = '';
-				if (percentage >= 0) {
-					style = 'font-size: 20px; color: lightgreen';
-					state = 'up';
-					emoji = '📈';
-				} else {
-					style = 'font-size: 20px; color: red';
-					state = 'down';
-					emoji = '📉';
-				}
-
-				const marketUpdate = `${emoji} ${
-					stock.ticker
-				} is ${state} ${Math.abs(percentage)}%`;
-
-				console.log(`%c${marketUpdate}`, style);
+				logPriceChange(stock.ticker, percentage);
 			});
 		},
 	},
 	actions: {
 		endDay(context) {
+			logDayChange();
 			context.commit('endDay');
 		},
 	},
@@ -94,3 +144,30 @@ export default {
 		},
 	},
 };
+
+function logPriceChange(ticker, percentage) {
+	let style = '';
+	let state = '';
+	let emoji = '';
+	if (percentage >= 0) {
+		style = 'font-size: 20px; color: lightgreen';
+		state = 'up';
+		emoji = '📈';
+	} else {
+		style = 'font-size: 20px; color: red';
+		state = 'down';
+		emoji = '📉';
+	}
+
+	const marketUpdate = `${emoji} ${ticker} is ${state} ${Math.abs(
+		percentage
+	)}%`;
+
+	console.log(`%c${marketUpdate}`, style);
+}
+
+function logDayChange() {
+	console.log('%c🌇 The sun is setting ...', 'font-size: 16px');
+}
+
+export default stocksModule;

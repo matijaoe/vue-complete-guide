@@ -1,5 +1,5 @@
 <template>
-	<section class="px-4">
+	<section class="px-6">
 		<page-title title="Your heavy bag"></page-title>
 		<div
 			v-if="userStocks.length > 0"
@@ -11,6 +11,7 @@
 				:name="stock.name"
 				:ticker="stock.ticker"
 				:price="stock.price"
+				:change="stock.change"
 			/>
 		</div>
 		<div v-else>

@@ -1,7 +1,7 @@
 <template>
-	<div class="min-h-screen bg-green-50 text-green-900">
+	<div class="min-h-screen bg-green-50 text-green-900 pb-8">
 		<div class="2xl:container mx-auto">
-			<TheHeader/>
+			<TheHeader />
 			<main>
 				<router-view></router-view>
 			</main>
@@ -20,4 +20,23 @@ export default {
 </script>
 
 <style>
+html {
+	scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+	height: 12px;
+	width: 6px;
+	background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #393812;
+	-webkit-border-radius: 1ex;
+	-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+	background: #000;
+}
 </style>
