@@ -115,7 +115,7 @@ const stocksModule = {
 		};
 	},
 	mutations: {
-		endDay(state) {
+		randomizeStocks(state) {
 			state.stocks.forEach((stock) => {
 				let percentage = Math.floor(Math.random() * 15) + 1;
 				percentage *= Math.random() < 0.4 ? -1 : 1;
@@ -133,9 +133,9 @@ const stocksModule = {
 		},
 	},
 	actions: {
-		endDay(context) {
+		randomizeStocks(context) {
 			logDayChange();
-			context.commit('endDay');
+			context.commit('randomizeStocks');
 		},
 	},
 	getters: {

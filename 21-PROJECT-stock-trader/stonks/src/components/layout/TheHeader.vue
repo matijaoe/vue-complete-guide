@@ -4,11 +4,12 @@
 			class="flex items-center justify-between space-x-4 flex-1 px-6 py-4 bg-green-100"
 		>
 			<nav class="flex items-center space-x-6">
-				<ul class="inline-flex items-center space-x-8 list-none">
-					<li id="logo" class="font-display font-medium mr-2">
+				<ul class="inline-flex items-center space-x-4 list-none">
+					<li id="logo" class="font-display font-medium mr-4">
 						<router-link
 							:to="{ name: 'home' }"
 							class="flex items-center space-x-1"
+							id="logo"
 						>
 							<svg
 								class="w-7 h-7"
@@ -28,12 +29,16 @@
 						</router-link>
 					</li>
 					<li>
-						<router-link :to="{ name: 'portfolio' }"
+						<router-link
+							:to="{ name: 'portfolio' }"
+							class="py-2 px-3 rounded-md hover:bg-green-200"
 							>Portfolio</router-link
 						>
 					</li>
 					<li>
-						<router-link :to="{ name: 'stocks' }"
+						<router-link
+							:to="{ name: 'stocks' }"
+							class="py-2 px-3 rounded-md hover:bg-green-200"
 							>Stocks</router-link
 						>
 					</li>
@@ -64,10 +69,17 @@ export default {
 		...mapGetters('portfolio', ['formattedFunds']),
 	},
 	methods: {
-		...mapActions('stocks', ['endDay']),
+		...mapActions('stocks', { endDay: 'randomizeStocks' }),
 	},
 };
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
+.router-link-active {
+	@apply bg-green-200;
+}
+
+#logo.router-link-active {
+	@apply bg-transparent;
+}
 </style>
