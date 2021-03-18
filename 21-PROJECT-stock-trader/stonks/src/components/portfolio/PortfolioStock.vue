@@ -26,7 +26,7 @@
 					class="flex flex-col md:flex-row items-center justify-between relative gap-4 md:gap-2 pb-2"
 				>
 					<input
-						type="text"
+						type="number"
 						v-model.trim.number="sellAmount"
 						placeholder="Quantity"
 						class="outline-none bg-transparent placeholder-green-200 py-1 text-2xl text-center"
@@ -42,7 +42,7 @@
 							:disabled="!isValid"
 						>
 							Sell
-							<span v-if="sellAmount > 0 && sellAmount <= qnt">
+							<span v-if="isValid && sellAmount">
 								for ${{ formattedOrderTotal }}
 							</span>
 						</base-button>
@@ -73,6 +73,8 @@ export default {
 	},
 	methods: {
 		sellStock() {
+			this.validateAmount();
+
 			if (this.isValid) {
 				const order = {
 					ticker: this.ticker,
@@ -80,28 +82,24 @@ export default {
 					cost: this.sellAmount * this.price,
 				};
 
-				console.log('sell ' + this.sellAmount + ' of ' + this.ticker);
+				console.log(
+					'sell ' + this.sellAmount + ' stocks of ' + this.ticker
+				);
 				this.$store.dispatch('portfolio/sellStock', order);
 
 				this.sellAmount = '';
 				this.isValid = true;
 				this.error = null;
-			} else {
-				//todo shake card or button as an error
 			}
 		},
 		validateAmount() {
 			const qnt = this.sellAmount;
 
 			try {
-				if (qnt === '') {
+				if (!Number.isInteger(+qnt)) {
 					this.isValid = false;
-					this.error = null;
-					return;
-				} else if (isNaN(+qnt)) {
-					this.isValid = false;
-					throw Error(`Your sell amount must be a number`);
-				} else if (qnt <= 0) {
+					throw Error(`Quantity must be a whole number`);
+				} else if (qnt < 1) {
 					this.isValid = false;
 					throw Error(`Minimum order is at least 1 stock`);
 				} else if (qnt > this.qnt) {
@@ -151,7 +149,7 @@ export default {
 			return (this.qnt * this.price).toLocaleString();
 		},
 		formattedOrderTotal() {
-			return (this.sellAmount * this.price).toLocaleString();
+			return (parseInt(this.sellAmount) * this.price).toLocaleString();
 		},
 	},
 };

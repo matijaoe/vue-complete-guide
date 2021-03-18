@@ -26,22 +26,38 @@
 			</div>
 		</template>
 		<template #default>
-			<div class="flex items-center justify-between space-x-4">
-				<div class="flex items-center space-x-4">
-					<span>Buy</span>
+			<div class="flex gap-4 relative pb-2">
+				<label class="flex items-center flex-1">
 					<input
-						type="text"
-						v-model.number="quantity"
-						placeholder="2"
-						class="outline-none bg-transparent text-4xl rounded-md placeholder-green-200 flex-1"
+						type="number"
+						v-model.number="buyAmount"
+						placeholder="Number of stonks"
+						class="outline-none rounded-md placeholder-green-400 px-2 text-xl w-full h-full font-semibold bg-transparent focus:bg-green-100"
+						@input="validateAmount"
+						@keyup.enter="buyStock"
+						@blur="clearIfError"
 					/>
-				</div>
+				</label>
 
-				<div class="align-right">
-					<base-button class="px-5" mode="light" @click="buyStock">
+				<div class="">
+					<base-button
+						class="px-5"
+						mode="light"
+						@click="buyStock"
+						:disabled="!isValid"
+					>
 						Buy
+						<span v-if="isValid && buyAmount">
+							for ${{ formattedOrderTotal }}
+						</span>
 					</base-button>
 				</div>
+				<p
+					v-if="error"
+					class="text-xs text-red-500 absolute -bottom-3 md:-bottom-3"
+				>
+					{{ error }}
+				</p>
 			</div>
 		</template>
 	</StockCard>
@@ -55,7 +71,9 @@ export default {
 	props: ['ticker', 'name', 'price'],
 	data() {
 		return {
-			quantity: null,
+			buyAmount: null,
+			isValid: true,
+			error: null,
 		};
 	},
 
@@ -64,26 +82,63 @@ export default {
 			return price.toLocaleString();
 		},
 		buyStock() {
-			const funds = this.$store.getters['portfolio/funds'];
-			if (this.total <= funds) {
+			this.validateAmount();
+
+			// check not needed as btn is disabled anyways
+			if (this.isValid) {
 				this.$store.dispatch('portfolio/buyStock', {
 					cost: this.total,
-					qnt: this.quantity,
+					qnt: this.buyAmount,
 					ticker: this.ticker,
 				});
+				this.buyAmount = '';
+			}
+		},
+		validateAmount() {
+			const qnt = this.buyAmount;
+
+			try {
+				if (!Number.isInteger(+qnt)) {
+					this.isValid = false;
+					throw Error(`Quantity must be a whole number`);
+				} else if (qnt < 1) {
+					this.isValid = false;
+					throw Error(`Minimum order is at least 1 stock`);
+				} else if (this.total > this.funds) {
+					this.isValid = false;
+					throw Error(`You don't have enough funds`);
+				} else {
+					this.isValid = true;
+					this.error = null;
+				}
+			} catch (err) {
+				this.error = err.message;
+			}
+		},
+		clearIfError() {
+			if (this.erorr || !this.isValid) {
+				this.buyAmount = '';
+				this.error = null;
+				this.isValid = true;
 			}
 		},
 	},
 	computed: {
 		total() {
-			if (this.quantity) {
-				return this.quantity * this.price;
+			if (this.buyAmount) {
+				return this.buyAmount * this.price;
 			} else {
 				return 0;
 			}
 		},
+		funds() {
+			return this.$store.getters['portfolio/funds'];
+		},
+		formattedOrderTotal() {
+			return (parseInt(this.buyAmount) * this.price).toLocaleString();
+		},
 		// formatTotal() {
-		// 	return this.formatPrice(this.quantity * price);
+		// 	return this.formatPrice(this.buyAmount * price);
 		// },
 	},
 };
@@ -94,7 +149,16 @@ export default {
 	left: 5%;
 }
 
-input {
-	max-width: 100px;
+label {
+	min-width: 80px;
+}
+
+input::placeholder {
+	font-weight: normal;
+}
+
+#stonks {
+	top: 50%;
+	transform: translateY(-50%);
 }
 </style>

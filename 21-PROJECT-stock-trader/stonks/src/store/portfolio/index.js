@@ -21,16 +21,6 @@ export default {
 					qnt: qnt,
 				});
 			}
-
-			console.log(state.stocks);
-
-			// const stock = state.stocks.find((stock) => stock.ticker === ticker);
-			// stock.qnt -= qnt;
-			// if (stock.qnt <= 0) {
-			// 	state.stocks = state.stocks.filter(
-			// 		(stock) => stock.ticker !== ticker
-			// 	);
-			// }
 		},
 		sellStock(state, payload) {
 			const { ticker, cost, qnt } = payload;
