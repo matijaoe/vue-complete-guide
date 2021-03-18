@@ -105,7 +105,7 @@ export default {
 					throw Error(`Quantity must be a whole number`);
 				} else if (qnt < 1) {
 					this.isValid = false;
-					throw Error(`Minimum order is at least 1 stock`);
+					throw Error(`Minimum order is 1 stock`);
 				} else if (this.total > this.funds) {
 					this.isValid = false;
 					throw Error(`You don't have enough funds`);

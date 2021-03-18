@@ -101,7 +101,7 @@ export default {
 					throw Error(`Quantity must be a whole number`);
 				} else if (qnt < 1) {
 					this.isValid = false;
-					throw Error(`Minimum order is at least 1 stock`);
+					throw Error(`Minimum order is 1 stock`);
 				} else if (qnt > this.qnt) {
 					this.isValid = false;
 					throw Error(`You can't sell more than you have`);
