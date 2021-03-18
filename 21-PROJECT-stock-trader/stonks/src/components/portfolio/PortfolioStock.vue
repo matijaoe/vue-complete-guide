@@ -29,7 +29,7 @@
 						type="number"
 						v-model.trim.number="sellAmount"
 						placeholder="Quantity"
-						class="outline-none bg-transparent placeholder-green-200 py-1 text-2xl text-center"
+						class="outline-none bg-transparent placeholder-green-200 py-1 text-2xl text-center font-semibold"
 						@input="validateAmount"
 						@keydown.enter="sellStock"
 						@blur="clearIfError"
@@ -49,7 +49,7 @@
 					</div>
 					<p
 						v-if="error"
-						class="text-xs text-red-500 absolute -bottom-3 md:-bottom-2"
+						class="text-xs text-red-400 absolute -bottom-3 w-full font-semibold text-center md:text-left"
 					>
 						{{ error }}
 					</p>
@@ -158,5 +158,9 @@ export default {
 <style scoped>
 input {
 	max-width: 120px;
+}
+
+input::placeholder {
+	font-weight: normal;
 }
 </style>

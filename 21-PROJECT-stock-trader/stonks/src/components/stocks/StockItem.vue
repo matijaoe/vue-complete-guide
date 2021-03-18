@@ -26,22 +26,24 @@
 			</div>
 		</template>
 		<template #default>
-			<div class="flex gap-4 relative pb-2">
+			<div
+				class="flex flex-row sm:flex-col md:flex-row gap-4 relative pb-2"
+			>
 				<label class="flex items-center flex-1">
 					<input
 						type="number"
 						v-model.number="buyAmount"
 						placeholder="Number of stonks"
-						class="outline-none rounded-md placeholder-green-400 px-2 text-xl w-full h-full font-semibold bg-transparent focus:bg-green-100"
+						class="outline-none rounded-md placeholder-green-300 px-2 text-xl w-full h-full font-semibold bg-transparent focus:bg-green-100 py-2"
 						@input="validateAmount"
 						@keyup.enter="buyStock"
 						@blur="clearIfError"
 					/>
 				</label>
 
-				<div class="">
+				<div class="flex">
 					<base-button
-						class="px-5"
+						class="px-5 flex-1"
 						mode="light"
 						@click="buyStock"
 						:disabled="!isValid"
@@ -54,7 +56,7 @@
 				</div>
 				<p
 					v-if="error"
-					class="text-xs text-red-500 absolute -bottom-3 md:-bottom-3"
+					class="text-xs text-red-400 absolute -bottom-3 md:-bottom-3 w-full font-semibold sm:text-center md:text-left"
 				>
 					{{ error }}
 				</p>
