@@ -3,7 +3,6 @@ export default {
 	state() {
 		return {
 			funds: 10000,
-			stocksValue: 0,
 			stocks: [],
 		};
 	},
