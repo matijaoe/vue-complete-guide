@@ -48,7 +48,37 @@
 				<div>
 					<div class="inline-flex items-center space-x-4">
 						<base-button @click="endDay">End Day</base-button>
-						<base-button>Save & Load</base-button>
+						<base-button
+							@click="dropdownActive = !dropdownActive"
+							class="relative"
+						>
+							<p class="flex items-center space-x-2">
+								<span>Save & Load</span>
+								<svg
+									class="w-4 h-4"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M19 9l-7 7-7-7"
+									></path>
+								</svg>
+							</p>
+							<div
+								v-if="dropdownActive"
+								class="absolute top-full mt-2 rounded-md bg-green-50 border-2 border-green-300 flex flex-col overflow-hidden w-full transform -translate-x-3"
+							>
+								<base-button mode="clear" @click="saveDay"
+									>Save</base-button
+								>
+								<base-button mode="clear">Load</base-button>
+							</div>
+						</base-button>
 					</div>
 				</div>
 			</div>
@@ -67,11 +97,19 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 export default {
+	data() {
+		return {
+			dropdownActive: false,
+		};
+	},
 	computed: {
 		...mapGetters('portfolio', ['formattedFunds']),
 	},
 	methods: {
 		...mapActions('stocks', { endDay: 'randomizeStocks' }),
+		saveDay() {
+			this.$store.dispatch('saveDay');
+		},
 	},
 };
 </script>
