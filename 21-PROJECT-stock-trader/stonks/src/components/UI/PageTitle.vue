@@ -1,7 +1,7 @@
 <template>
-	<div class="pb-2 mb-6 flex justify-center overflow-y-hidden">
+	<div class="pb-2 mb-4 md:mb-5 flex justify-center overflow-y-hidden">
 		<h2
-			class="title relative text-6xl font-medium font-display text-center z-10"
+			class="title relative text-5xl md:text-6xl font-medium font-display text-center z-10 px-4"
 		>
 			{{ title }}
 		</h2>
@@ -19,8 +19,8 @@ export default {
 	content: '';
 	position: absolute;
 	top: 35%;
-	left: -1rem;
-	right: -1rem;
+	left: 0rem;
+	right: 0rem;
 	height: 30%;
 	background: rgba(167, 243, 208);
 	z-index: -1;

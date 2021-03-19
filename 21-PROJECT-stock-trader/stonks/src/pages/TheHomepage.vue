@@ -1,5 +1,5 @@
 <template>
-	<section>
+	<base-section>
 		<base-container>
 			<template #header>
 				<div class="mb-4">
@@ -21,7 +21,7 @@
 				</div>
 			</template>
 		</base-container>
-	</section>
+	</base-section>
 </template>
 
 <script>

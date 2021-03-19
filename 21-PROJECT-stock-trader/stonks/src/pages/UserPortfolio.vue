@@ -1,61 +1,64 @@
 <template>
-	<section class="px-6">
-		<page-title title="Your heavy bag"></page-title>
-		<div
-			v-if="userStocks.length > 0"
-			class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
-		>
-			<base-container
-				class="w-full bg-green-200 justify-between items-center"
-			>
-				<template #header>
-					<div class="flex flex-col gap-2">
-						<p class="text-lg">Your portfolio is worth</p>
-						<p class="font-display text-7xl">
-							$ {{ formattedPortfolioTotal }}
-						</p>
-					</div>
-				</template>
-				<template #default>
-					<div class="flex space-x-2 -ml-4">
-						<trending-up
-							v-if="change.value && change.value > 0"
-						></trending-up>
-						<trending-down
-							v-else-if="change.value && change.value < 0"
-						></trending-down>
-						<p
-							class="font-medium"
-							:class="{
-								'text-green-500': change > 0,
-								'text-red-400': change < 0,
-							}"
-						>
-							{{ valueChangeStats }}
-						</p>
-					</div>
-				</template>
-			</base-container>
-			<PorfolioStock
-				v-for="stock in userStocks"
-				:key="stock.ticker"
-				:name="stock.name"
-				:ticker="stock.ticker"
-				:price="stock.price"
-				:change="stock.change"
-			/>
+	<base-section class="h-full">
+		<div v-if="userStocks.length > 0">
+			<page-title title="Your heavy bag"></page-title>
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+				<base-container
+					class="w-full bg-green-100 justify-between items-center"
+				>
+					<template #header>
+						<div class="flex flex-col gap-2">
+							<p class="text-lg">Your portfolio is worth</p>
+							<p class="font-display text-7xl">
+								$ {{ formattedPortfolioTotal }}
+							</p>
+						</div>
+					</template>
+					<template #default>
+						<div class="flex space-x-2 -ml-4">
+							<trending-up
+								v-if="change.value && change.value > 0"
+							></trending-up>
+							<trending-down
+								v-else-if="change.value && change.value < 0"
+							></trending-down>
+							<p
+								class="font-medium"
+								:class="{
+									'text-green-500': change.value > 0,
+									'text-red-400': change.value < 0,
+								}"
+							>
+								{{ valueChangeStats }}
+							</p>
+						</div>
+					</template>
+				</base-container>
+				<PorfolioStock
+					v-for="stock in userStocks"
+					:key="stock.ticker"
+					:name="stock.name"
+					:ticker="stock.ticker"
+					:price="stock.price"
+					:change="stock.change"
+				/>
+			</div>
 		</div>
 		<div v-else>
-			<p class="text-6xl text-center" style="transform: translateY(200%)">
-				You're fresh outta
+			<p
+				class="text-6xl text-center flex flex-col md:flex-row gap-3 justify-center items-center md:items-baseline font-medium mt-32"
+			>
+				<span>You're</span>
+				<span>fresh</span>
+				<span>outta</span>
 				<router-link
-					class="ml-1 font-display text-6xl text-font-medium bg-green-200 rounded-md px-2 text-green-700"
+					class="ml-1 font-display text-7xl text-font-medium bg-green-200 rounded-md px-3 py-1 text-green-700"
 					:to="{ name: 'stocks' }"
 					>stonks
 				</router-link>
 			</p>
 		</div>
-	</section>
+	</base-section>
 </template>
 
 <script>
@@ -129,7 +132,6 @@ export default {
 	},
 	watch: {
 		portfolioTotal(newValue, oldValue) {
-			console.log('changed');
 			this.change.value = newValue - oldValue;
 			this.change.percentage = this.calculatePercentage(
 				newValue,

@@ -34,8 +34,8 @@ const router = createRouter({
 	routes,
 });
 
-router.beforeEach((to, from, next) => {
-	console.log({ to, from });
+router.beforeEach((_, _2, next) => {
+	// console.log({ to, from });
 	next();
 });
 

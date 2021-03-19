@@ -26,7 +26,10 @@
 			<div class="flex flex-col space-y-4">
 				<div class="flex gap-2 items-baseline">
 					<span>You have</span>
-					<span class="text-green-400 text-lg font-medium">
+					<span
+						class="text-green-400 text-lg font-medium cursor-pointer"
+						@click="sellAmount = qnt"
+					>
 						{{ qnt }} stocks
 					</span>
 					<span>worth</span>
@@ -35,22 +38,23 @@
 					</span>
 				</div>
 
-				<div
-					class="flex flex-col md:flex-row items-center justify-between relative gap-4 md:gap-2 pb-2"
-				>
-					<input
-						type="number"
-						v-model.trim.number="sellAmount"
-						placeholder="Quantity"
-						class="outline-none bg-transparent placeholder-green-200 py-1 text-2xl text-center font-medium"
-						@input="validateAmount"
-						@keydown.enter="sellStock"
-						@blur="clearIfError"
-					/>
-					<div class="w-full md:w-auto">
+				<div class="flex flex-row gap-4 relative pb-2">
+					<label class="flex items-center flex-1">
+						<input
+							type="number"
+							v-model.trim.number="sellAmount"
+							placeholder="Quantity"
+							class="outline-none rounded-md placeholder-green-300 px-2 text-xl w-full h-full bg-transparent focus:bg-green-100 py-2 font-medium"
+							@input="validateAmount"
+							@keydown.enter="sellStock"
+							@blur="clearIfError"
+						/>
+					</label>
+
+					<div class="flex">
 						<base-button
 							mode="light"
-							class="px-8 w-full md:w-auto"
+							class="px-5 flex-1"
 							@click="sellStock"
 							:disabled="!isValid"
 						>
@@ -62,7 +66,7 @@
 					</div>
 					<p
 						v-if="error"
-						class="text-xs text-red-400 absolute -bottom-3 w-full text-center md:text-left"
+						class="text-xs text-red-400 absolute -bottom-3 md:-bottom-3 w-full sm:text-center md:text-left px-2"
 					>
 						{{ error }}
 					</p>
@@ -96,7 +100,7 @@ export default {
 				};
 
 				console.log(
-					'sell ' + this.sellAmount + ' stocks of ' + this.ticker
+					'Sell ' + this.sellAmount + ' stocks of ' + this.ticker
 				);
 				this.$store.dispatch('portfolio/sellStock', order);
 
@@ -156,10 +160,6 @@ export default {
 </script>
 
 <style scoped>
-input {
-	max-width: 120px;
-}
-
 input::placeholder {
 	font-weight: normal;
 }

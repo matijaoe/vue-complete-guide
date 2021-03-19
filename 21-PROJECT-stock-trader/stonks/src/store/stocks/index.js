@@ -167,6 +167,7 @@ function logPriceChange(ticker, percentage) {
 }
 
 function logDayChange() {
+	console.clear();
 	console.log('%c🌇 The sun is setting ...', 'font-size: 16px');
 }
 
