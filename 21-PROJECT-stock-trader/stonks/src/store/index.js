@@ -54,6 +54,7 @@ const store = createStore({
 				);
 
 				const { funds, stocks } = responseData;
+
 				let portfolio = [];
 				if ('portfolio' in responseData) {
 					portfolio = responseData.portfolio;
