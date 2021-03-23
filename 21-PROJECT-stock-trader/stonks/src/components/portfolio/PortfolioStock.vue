@@ -140,11 +140,11 @@ export default {
 	},
 	computed: {
 		...mapGetters('portfolio', {
-			portolioStocks: 'stocks',
+			portfolioStocks: 'stocks',
 			funds: 'funds',
 		}),
 		qnt() {
-			const stock = this.portolioStocks.find(
+			const stock = this.portfolioStocks.find(
 				(stock) => stock.ticker === this.ticker
 			);
 			return stock.qnt;

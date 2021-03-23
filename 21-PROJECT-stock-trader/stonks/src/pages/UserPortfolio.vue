@@ -78,21 +78,21 @@ export default {
 	},
 	computed: {
 		...mapGetters('portfolio', {
-			portolioStocks: 'stocks',
+			portfolioStocks: 'stocks',
 		}),
 		...mapGetters('stocks', {
 			allStocks: 'stocks',
 		}),
 		userStocks() {
 			// get array of portoflio stock tickers
-			const userStockTickers = this.portolioStocks.map(
+			const userStockTickers = this.portfolioStocks.map(
 				(stock) => stock.ticker
 			);
 
 			// create new object with user stocks, and add portfolio stock qnt
 			const stocks = this.allStocks.filter((stock) => {
 				if (userStockTickers.includes(stock.ticker)) {
-					const { qnt } = this.portolioStocks.find(
+					const { qnt } = this.portfolioStocks.find(
 						(s) => s.ticker === stock.ticker
 					);
 					stock.qnt = qnt;
@@ -114,7 +114,7 @@ export default {
 			return this.portfolioTotal.toLocaleString();
 		},
 		valueChangeStats() {
-			if (this.change.value > 0) {
+			if (this.change.value > 0 && this.change.value >= Infinity) {
 				return `Up ${Math.abs(this.change.percentage)}% from yesterday`;
 			} else if (this.change.value < 0) {
 				return `Down ${Math.abs(

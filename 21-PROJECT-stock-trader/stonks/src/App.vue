@@ -18,6 +18,8 @@ export default {
 	},
 	created() {
 		this.$store.dispatch('loadDay');
+
+		this.$store.getters['portfolio/stocks'];
 	},
 };
 </script>

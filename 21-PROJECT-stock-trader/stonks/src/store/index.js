@@ -30,6 +30,9 @@ const store = createStore({
 				stocks: getters['stocks/stocks'],
 			};
 
+			console.log('DATA TO SAVE');
+			console.log(dataToSave);
+            
 			try {
 				await axios.put(
 					`${getters.databaseUrl}/checkpoints/${getters.userId}.json`,
