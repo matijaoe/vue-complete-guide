@@ -65,7 +65,8 @@ export default {
 			return state.funds > 0;
 		},
 		stocks(state) {
-			return state.stocks;
+			// todo nasty bug after saving when portfolio is empty
+			return state.stocks || [];
 		},
 	},
 };

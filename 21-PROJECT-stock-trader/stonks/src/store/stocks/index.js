@@ -128,7 +128,7 @@ const stocksModule = {
 				);
 				stock.price = newPrice;
 
-				logPriceChange(stock.ticker, percentage);
+				// logPriceChange(stock.ticker, percentage);
 			});
 		},
 		setStocks(state, payload) {
@@ -137,7 +137,7 @@ const stocksModule = {
 	},
 	actions: {
 		randomizeStocks(context) {
-			logDayChange();
+			// logDayChange();
 			context.commit('randomizeStocks');
 		},
 	},

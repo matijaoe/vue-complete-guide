@@ -24,15 +24,16 @@ const store = createStore({
 
 			const { getters } = context;
 
+			const portfolio = getters['portfolio/stocks'];
+			const funds = getters['portfolio/funds'];
+			const stocks = getters['stocks/stocks'];
+
 			const dataToSave = {
-				portfolio: getters['portfolio/stocks'],
-				funds: getters['portfolio/funds'],
-				stocks: getters['stocks/stocks'],
+				portfolio,
+				funds,
+				stocks,
 			};
 
-			console.log('DATA TO SAVE');
-			console.log(dataToSave);
-            
 			try {
 				await axios.put(
 					`${getters.databaseUrl}/checkpoints/${getters.userId}.json`,
@@ -52,7 +53,11 @@ const store = createStore({
 					`${getters.databaseUrl}/checkpoints/${getters.userId}.json`
 				);
 
-				const { portfolio, funds, stocks } = responseData;
+				const { funds, stocks } = responseData;
+				let portfolio = [];
+				if ('portfolio' in responseData) {
+					portfolio = responseData.portfolio;
+				}
 
 				context.commit('portfolio/setPortfolio', {
 					stocks: portfolio,

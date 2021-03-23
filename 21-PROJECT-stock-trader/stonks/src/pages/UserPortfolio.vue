@@ -139,6 +139,5 @@ export default {
 			).toFixed(2);
 		},
 	},
-	mounted() {},
 };
 </script>
