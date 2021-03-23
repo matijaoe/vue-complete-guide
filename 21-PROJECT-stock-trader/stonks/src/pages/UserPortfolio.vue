@@ -114,7 +114,7 @@ export default {
 			return this.portfolioTotal.toLocaleString();
 		},
 		valueChangeStats() {
-			if (this.change.value > 0 && this.change.value >= Infinity) {
+			if (this.change.value > 0 && this.change.value < Infinity) {
 				return `Up ${Math.abs(this.change.percentage)}% from yesterday`;
 			} else if (this.change.value < 0) {
 				return `Down ${Math.abs(
