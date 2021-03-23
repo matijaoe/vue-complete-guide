@@ -71,12 +71,14 @@
 							</p>
 							<div
 								v-if="dropdownActive"
-								class="absolute top-full mt-2 rounded-md bg-green-50 border-2 border-green-300 flex flex-col overflow-hidden w-full transform -translate-x-3"
+								class="absolute top-full mt-2 rounded-md bg-green-50 border-2 border-green-300 flex flex-col overflow-hidden w-full transform -translate-x-3 z-50"
 							>
 								<base-button mode="clear" @click="saveDay"
 									>Save</base-button
 								>
-								<base-button mode="clear">Load</base-button>
+								<base-button mode="clear" @click="loadDay"
+									>Load</base-button
+								>
 							</div>
 						</base-button>
 					</div>
@@ -107,9 +109,7 @@ export default {
 	},
 	methods: {
 		...mapActions('stocks', { endDay: 'randomizeStocks' }),
-		saveDay() {
-			this.$store.dispatch('saveDay');
-		},
+		...mapActions(['saveDay', 'loadDay']),
 	},
 };
 </script>

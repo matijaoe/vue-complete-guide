@@ -131,6 +131,9 @@ const stocksModule = {
 				logPriceChange(stock.ticker, percentage);
 			});
 		},
+		setStocks(state, payload) {
+			state.stocks = payload.stocks;
+		},
 	},
 	actions: {
 		randomizeStocks(context) {

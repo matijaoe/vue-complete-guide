@@ -16,6 +16,9 @@ export default {
 	components: {
 		TheHeader,
 	},
+	created() {
+		this.$store.dispatch('loadDay');
+	},
 };
 </script>
 

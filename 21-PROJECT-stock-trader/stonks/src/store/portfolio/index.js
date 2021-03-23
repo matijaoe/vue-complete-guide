@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default {
 	namespaced: true,
 	state() {
@@ -11,30 +9,35 @@ export default {
 	mutations: {
 		buyStock(state, payload) {
 			const { ticker, cost, qnt } = payload;
-			state.funds -= cost;
 
 			const stock = state.stocks.find((stock) => stock.ticker === ticker);
+			state.funds -= cost;
 
 			if (stock) {
 				stock.qnt += qnt;
 			} else {
 				state.stocks.push({
 					ticker,
-					qnt: qnt,
+					qnt,
 				});
 			}
 		},
 		sellStock(state, payload) {
 			const { ticker, cost, qnt } = payload;
-			state.funds += cost;
 
 			const stock = state.stocks.find((stock) => stock.ticker === ticker);
+			state.funds += cost;
 			stock.qnt -= qnt;
+
 			if (stock.qnt <= 0) {
 				state.stocks = state.stocks.filter(
 					(stock) => stock.ticker !== ticker
 				);
 			}
+		},
+		setPortfolio(state, payload) {
+			state.stocks = payload.stocks;
+			state.funds = payload.funds;
 		},
 	},
 	actions: {

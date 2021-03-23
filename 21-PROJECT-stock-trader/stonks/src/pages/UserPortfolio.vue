@@ -121,7 +121,7 @@ export default {
 					this.change.percentage
 				)}% from yesterday`;
 			} else {
-				return 'Same as yesterday';
+				return 'Nice.';
 			}
 		},
 	},
