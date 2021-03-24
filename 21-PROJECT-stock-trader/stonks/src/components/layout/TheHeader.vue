@@ -47,7 +47,7 @@
 				</nav>
 				<div class="flex items-center">
 					<div
-						class="hidden sm:inline-flex items-center space-x-2 md:space-x-4"
+						class="hidden sm:inline-flex items-center space-x-2 space-x-4"
 					>
 						<base-button mode="clear" @click="endDay"
 							>End Day</base-button
@@ -131,7 +131,7 @@
 				class="bg-green-700 text-green-100 flex items-center justify-center px-6 pt-1 md:pt-0"
 			>
 				<p
-					class="flex flex-row md:flex-col items-center justify-center space-x-4"
+					class="flex flex-row md:flex-col items-center justify-center space-x-2 md:space-x-0"
 				>
 					<span class="uppercase text-xs">Funds</span>
 					<span class="text-3xl font-display"
