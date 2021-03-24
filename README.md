@@ -11,7 +11,7 @@ All are custom designs
 
 <img src="https://user-images.githubusercontent.com/46557266/112328795-efcc1d00-8cb6-11eb-8595-2d4b9b46a40a.png" width=800>
 
-## Main poject of older course, made entirely by me
+## Main project of old part of the course, made entirely by me
 - ### [Stonks](https://stonks-mat2ja.vercel.app)
 > Built with Vue 3 (Options API), Vue Router, Vuex, Firebase realtime database & Tailwind
 
