@@ -7,6 +7,7 @@ All are custom designs
 # Main Course Project
 - ### [Find a Coach App](https://find-a-coach-3f555.web.app)
 > Built with Vue 3 (Options API), Vue Router, Vuex, Firebase realtime database & auth
+
 > Login: admin@gmail.com - admin01
 
 <img src="https://user-images.githubusercontent.com/46557266/112328795-efcc1d00-8cb6-11eb-8595-2d4b9b46a40a.png" width=800>
