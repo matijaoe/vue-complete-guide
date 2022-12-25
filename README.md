@@ -2,7 +2,7 @@
 
 > [Vue 3 Udemy Course by Maximilian Schwarzmüller](https://www.udemy.com/course/vuejs-2-the-complete-guide/)
 
-Containes all of my course files. All apps were custom designs.
+Contains all of my course files. All apps are custom designs. ✌️
 
 ## Find a Coach App
 - Main course project
